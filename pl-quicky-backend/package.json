@@ -1,0 +1,22 @@
+{
+  "name": "pl-quicky-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync:fixtures": "node scripts/sync_fixtures.js",
+    "backfill:goals": "node scripts/backfill_goal_events.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.9.5",
+    "node-cron": "^4.6.0"
+  }
+}

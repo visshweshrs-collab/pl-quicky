@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment variables & secrets
+.env
+.env.*
+*.env
+!.env.example
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+out/
+**/dist/
+**/dist-ssr/
+**/build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Capacitor / Android generated & local files
+**/android/.gradle/
+**/android/build/
+**/android/app/build/
+**/android/capacitor-cordova-android-plugins/
+**/android/local.properties
+**/android/captures/
+**/android/.navigation/
+**/android/.externalNativeBuild/
+**/android/.cxx/
+**/android/app/src/main/assets/public/
+**/android/app/src/main/assets/capacitor.config.json
+**/android/app/src/main/assets/capacitor.plugins.json
+**/android/app/src/main/res/xml/config.xml
+*.apk
+*.aab
+*.ap_
+*.dex
+*.jks
+*.keystore
+*.hprof
+
+# IDE & Editor directories
+.idea/
+**/android/.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini

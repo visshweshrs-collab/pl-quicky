@@ -1,0 +1,440 @@
+import { getTeamById } from './teams';
+
+export const matches = [
+  {
+    id: 'match-1',
+    gameweek: 29,
+    competition: 'Premier League',
+    status: 'COMPLETED',
+    minute: 'FT',
+    date: 'Saturday, 14 March 2026',
+    dateIso: '2026-03-14',
+    time: '17:30 GMT',
+    venue: 'Emirates Stadium',
+    referee: 'Michael Oliver',
+    attendance: '60,340',
+    homeTeamId: 'arsenal',
+    awayTeamId: 'chelsea',
+    homeScore: 2,
+    awayScore: 1,
+    featured: true,
+    stats: {
+      possession: [58, 42],
+      shots: [17, 11],
+      shotsOnTarget: [7, 4],
+      xg: ['2.14', '1.08'],
+      corners: [9, 4],
+      fouls: [8, 13],
+      yellowCards: [1, 3],
+      redCards: [0, 0],
+      offsides: [2, 1],
+      passes: [542, 388],
+      passAccuracy: ['88%', '81%']
+    },
+    timeline: [
+      { minute: 18, type: 'GOAL', team: 'home', player: 'Bukayo Saka', detail: 'Assist: Martin Ødegaard (Left foot curler)' },
+      { minute: 34, type: 'YELLOW_CARD', team: 'away', player: 'Moisés Caicedo', detail: 'Tactical foul on Declan Rice' },
+      { minute: 42, type: 'GOAL', team: 'away', player: 'Cole Palmer', detail: 'Penalty kick (Left bottom corner)' },
+      { minute: 58, type: 'SUB', team: 'home', player: 'Gabriel Martinelli', detail: 'In for Leandro Trossard' },
+      { minute: 67, type: 'YELLOW_CARD', team: 'away', player: 'Marc Cucurella', detail: 'Dissent' },
+      { minute: 73, type: 'GOAL', team: 'home', player: 'Kai Havertz', detail: 'Assist: Gabriel Martinelli (Header)' },
+      { minute: 81, type: 'SUB', team: 'away', player: 'Christopher Nkunku', detail: 'In for Nicolas Jackson' },
+      { minute: 88, type: 'YELLOW_CARD', team: 'home', player: 'Declan Rice', detail: 'Delaying restart' }
+    ],
+    lineups: {
+      home: {
+        formation: '4-3-3',
+        manager: 'Mikel Arteta',
+        startingXI: [
+          { number: 22, name: 'David Raya', position: 'GK' },
+          { number: 4, name: 'Ben White', position: 'RB' },
+          { number: 2, name: 'William Saliba', position: 'CB' },
+          { number: 6, name: 'Gabriel Magalhães', position: 'CB' },
+          { number: 12, name: 'Jurriën Timber', position: 'LB' },
+          { number: 41, name: 'Declan Rice', position: 'CM' },
+          { number: 5, name: 'Thomas Partey', position: 'CM' },
+          { number: 8, name: 'Martin Ødegaard (C)', position: 'CAM' },
+          { number: 7, name: 'Bukayo Saka', position: 'RW' },
+          { number: 29, name: 'Kai Havertz', position: 'ST' },
+          { number: 19, name: 'Leandro Trossard', position: 'LW' }
+        ],
+        substitutes: [
+          { number: 32, name: 'Neto', position: 'GK' },
+          { number: 15, name: 'Jakub Kiwior', position: 'DF' },
+          { number: 11, name: 'Gabriel Martinelli', position: 'FW' },
+          { number: 9, name: 'Gabriel Jesus', position: 'FW' },
+          { number: 23, name: 'Mikel Merino', position: 'MF' },
+          { number: 17, name: 'Oleksandr Zinchenko', position: 'DF' }
+        ]
+      },
+      away: {
+        formation: '4-2-3-1',
+        manager: 'Enzo Maresca',
+        startingXI: [
+          { number: 1, name: 'Robert Sánchez', position: 'GK' },
+          { number: 27, name: 'Malo Gusto', position: 'RB' },
+          { number: 29, name: 'Wesley Fofana', position: 'CB' },
+          { number: 6, name: 'Levi Colwill', position: 'CB' },
+          { number: 3, name: 'Marc Cucurella', position: 'LB' },
+          { number: 25, name: 'Moisés Caicedo', position: 'CDM' },
+          { number: 45, name: 'Roméo Lavia', position: 'CDM' },
+          { number: 11, name: 'Noni Madueke', position: 'RW' },
+          { number: 20, name: 'Cole Palmer', position: 'CAM' },
+          { number: 7, name: 'Pedro Neto', position: 'LW' },
+          { number: 15, name: 'Nicolas Jackson', position: 'ST' }
+        ],
+        substitutes: [
+          { number: 12, name: 'Filip Jörgensen', position: 'GK' },
+          { number: 4, name: 'Tosin Adarabioyo', position: 'DF' },
+          { number: 8, name: 'Enzo Fernández', position: 'MF' },
+          { number: 18, name: 'Christopher Nkunku', position: 'FW' },
+          { number: 10, name: 'Mykhailo Mudryk', position: 'FW' },
+          { number: 24, name: 'Reece James', position: 'DF' }
+        ]
+      }
+    }
+  },
+  {
+    id: 'match-2',
+    gameweek: 29,
+    competition: 'Premier League',
+    status: 'COMPLETED',
+    minute: 'FT',
+    date: 'Saturday, 14 March 2026',
+    dateIso: '2026-03-14',
+    time: '15:00 GMT',
+    venue: 'Anfield',
+    referee: 'Anthony Taylor',
+    attendance: '60,890',
+    homeTeamId: 'liverpool',
+    awayTeamId: 'sunderland',
+    homeScore: 3,
+    awayScore: 0,
+    featured: false,
+    stats: {
+      possession: [68, 32],
+      shots: [22, 5],
+      shotsOnTarget: [9, 1],
+      xg: ['2.78', '0.35'],
+      corners: [11, 2],
+      fouls: [7, 12],
+      yellowCards: [0, 2],
+      redCards: [0, 0],
+      offsides: [3, 1],
+      passes: [670, 280],
+      passAccuracy: ['91%', '74%']
+    },
+    timeline: [
+      { minute: 14, type: 'GOAL', team: 'home', player: 'Mohamed Salah', detail: 'Assist: Trent Alexander-Arnold' },
+      { minute: 52, type: 'GOAL', team: 'home', player: 'Luis Díaz', detail: 'Solo run & strike' },
+      { minute: 79, type: 'GOAL', team: 'home', player: 'Darwin Núñez', detail: 'Assist: Alexis Mac Allister' }
+    ],
+    lineups: null
+  },
+  {
+    id: 'match-3',
+    gameweek: 29,
+    competition: 'Premier League',
+    status: 'COMPLETED',
+    minute: 'FT',
+    date: 'Saturday, 14 March 2026',
+    dateIso: '2026-03-14',
+    time: '15:00 GMT',
+    venue: 'St. James\' Park',
+    referee: 'Paul Tierney',
+    attendance: '52,190',
+    homeTeamId: 'newcastle',
+    awayTeamId: 'bournemouth',
+    homeScore: 2,
+    awayScore: 2,
+    featured: false,
+    stats: {
+      possession: [52, 48],
+      shots: [15, 14],
+      shotsOnTarget: [6, 5],
+      xg: ['1.85', '1.62'],
+      corners: [6, 7],
+      fouls: [11, 10],
+      yellowCards: [2, 2],
+      redCards: [0, 0],
+      offsides: [2, 2],
+      passes: [460, 420],
+      passAccuracy: ['82%', '81%']
+    },
+    timeline: [
+      { minute: 21, type: 'GOAL', team: 'away', player: 'Antoine Semenyo', detail: 'Counter attack finish' },
+      { minute: 39, type: 'GOAL', team: 'home', player: 'Alexander Isak', detail: 'Penalty kick' },
+      { minute: 64, type: 'GOAL', team: 'home', player: 'Anthony Gordon', detail: 'Right wing strike' },
+      { minute: 88, type: 'GOAL', team: 'away', player: 'Evanilson', detail: 'Header from corner' }
+    ],
+    lineups: null
+  },
+  {
+    id: 'match-4',
+    gameweek: 29,
+    competition: 'Premier League',
+    status: 'COMPLETED',
+    minute: 'FT',
+    date: 'Sunday, 15 March 2026',
+    dateIso: '2026-03-15',
+    time: '16:30 GMT',
+    venue: 'Etihad Stadium',
+    referee: 'Simon Hooper',
+    attendance: '53,200',
+    homeTeamId: 'man-city',
+    awayTeamId: 'brighton',
+    homeScore: 2,
+    awayScore: 1,
+    featured: false,
+    stats: {
+      possession: [64, 36],
+      shots: [19, 8],
+      shotsOnTarget: [8, 3],
+      xg: ['2.40', '0.78'],
+      corners: [8, 3],
+      fouls: [6, 9],
+      yellowCards: [1, 2],
+      redCards: [0, 0],
+      offsides: [1, 2],
+      passes: [610, 340],
+      passAccuracy: ['92%', '84%']
+    },
+    timeline: [
+      { minute: 28, type: 'GOAL', team: 'home', player: 'Erling Haaland', detail: 'Assist: Kevin De Bruyne' },
+      { minute: 56, type: 'GOAL', team: 'home', player: 'Phil Foden', detail: 'Curled into top corner' },
+      { minute: 77, type: 'GOAL', team: 'away', player: 'Kaoru Mitoma', detail: 'Solo dribble finish' }
+    ],
+    lineups: null
+  },
+  {
+    id: 'match-5',
+    gameweek: 30,
+    competition: 'Premier League',
+    status: 'UPCOMING',
+    minute: null,
+    date: 'Saturday, 21 March 2026',
+    dateIso: '2026-03-21',
+    time: '12:30 GMT',
+    venue: 'Tottenham Hotspur Stadium',
+    referee: 'Stuart Attwell',
+    attendance: '-',
+    homeTeamId: 'tottenham',
+    awayTeamId: 'arsenal',
+    homeScore: null,
+    awayScore: null,
+    featured: true,
+    stats: null,
+    timeline: [],
+    lineups: null
+  },
+  {
+    id: 'match-6',
+    gameweek: 30,
+    competition: 'Premier League',
+    status: 'UPCOMING',
+    minute: null,
+    date: 'Saturday, 21 March 2026',
+    dateIso: '2026-03-21',
+    time: '15:00 GMT',
+    venue: 'Villa Park',
+    referee: 'Jarred Gillett',
+    attendance: '-',
+    homeTeamId: 'aston-villa',
+    awayTeamId: 'man-city',
+    homeScore: null,
+    awayScore: null,
+    featured: false,
+    stats: null,
+    timeline: [],
+    lineups: null
+  },
+  {
+    id: 'match-7',
+    gameweek: 30,
+    competition: 'Premier League',
+    status: 'UPCOMING',
+    minute: null,
+    date: 'Saturday, 21 March 2026',
+    dateIso: '2026-03-21',
+    time: '17:30 GMT',
+    venue: 'Old Trafford',
+    referee: 'Chris Kavanagh',
+    attendance: '-',
+    homeTeamId: 'man-united',
+    awayTeamId: 'liverpool',
+    homeScore: null,
+    awayScore: null,
+    featured: false,
+    stats: null,
+    timeline: [],
+    lineups: null
+  },
+  {
+    id: 'match-8',
+    gameweek: 30,
+    competition: 'Premier League',
+    status: 'UPCOMING',
+    minute: null,
+    date: 'Sunday, 22 March 2026',
+    dateIso: '2026-03-22',
+    time: '14:00 GMT',
+    venue: 'Stamford Bridge',
+    referee: 'John Brooks',
+    attendance: '-',
+    homeTeamId: 'chelsea',
+    awayTeamId: 'newcastle',
+    homeScore: null,
+    awayScore: null,
+    featured: false,
+    stats: null,
+    timeline: [],
+    lineups: null
+  },
+  {
+    id: 'match-9',
+    gameweek: 30,
+    competition: 'Premier League',
+    status: 'UPCOMING',
+    minute: null,
+    date: 'Sunday, 22 March 2026',
+    dateIso: '2026-03-22',
+    time: '16:30 GMT',
+    venue: 'London Stadium',
+    referee: 'Robert Jones',
+    attendance: '-',
+    homeTeamId: 'west-ham',
+    awayTeamId: 'everton',
+    homeScore: null,
+    awayScore: null,
+    featured: false,
+    stats: null,
+    timeline: [],
+    lineups: null
+  },
+  {
+    id: 'match-10',
+    gameweek: 28,
+    competition: 'Premier League',
+    status: 'COMPLETED',
+    minute: 'FT',
+    date: 'Saturday, 7 March 2026',
+    dateIso: '2026-03-07',
+    time: '15:00 GMT',
+    venue: 'City Ground',
+    referee: 'Peter Bankes',
+    attendance: '30,120',
+    homeTeamId: 'nottingham-forest',
+    awayTeamId: 'fulham',
+    homeScore: 1,
+    awayScore: 0,
+    featured: false,
+    stats: {
+      possession: [42, 58],
+      shots: [11, 13],
+      shotsOnTarget: [4, 4],
+      xg: ['1.10', '0.95'],
+      corners: [4, 8],
+      fouls: [12, 11],
+      yellowCards: [2, 1],
+      redCards: [0, 0],
+      offsides: [2, 1],
+      passes: [380, 520],
+      passAccuracy: ['77%', '85%']
+    },
+    timeline: [
+      { minute: 61, type: 'GOAL', team: 'home', player: 'Chris Wood', detail: 'Header from free-kick' }
+    ],
+    lineups: null
+  },
+  {
+    id: 'match-11',
+    gameweek: 28,
+    competition: 'Premier League',
+    status: 'COMPLETED',
+    minute: 'FT',
+    date: 'Sunday, 8 March 2026',
+    dateIso: '2026-03-08',
+    time: '14:00 GMT',
+    venue: 'Gtech Community Stadium',
+    referee: 'Andy Madley',
+    attendance: '17,100',
+    homeTeamId: 'brentford',
+    awayTeamId: 'wolves',
+    homeScore: 3,
+    awayScore: 2,
+    featured: false,
+    stats: {
+      possession: [51, 49],
+      shots: [16, 14],
+      shotsOnTarget: [7, 5],
+      xg: ['2.10', '1.75'],
+      corners: [6, 5],
+      fouls: [10, 14],
+      yellowCards: [3, 4],
+      redCards: [0, 0],
+      offsides: [1, 2],
+      passes: [440, 420],
+      passAccuracy: ['80%', '81%']
+    },
+    timeline: [
+      { minute: 9, type: 'GOAL', team: 'home', player: 'Bryan Mbeumo', detail: 'Volley finish' },
+      { minute: 31, type: 'GOAL', team: 'away', player: 'Matheus Cunha', detail: 'Solo dribble' },
+      { minute: 48, type: 'GOAL', team: 'home', player: 'Yoane Wissa', detail: 'Close range rebound' },
+      { minute: 72, type: 'GOAL', team: 'away', player: 'Jørgen Strand Larsen', detail: 'Header' },
+      { minute: 86, type: 'GOAL', team: 'home', player: 'Mikkel Damsgaard', detail: 'Edge of box curler' }
+    ],
+    lineups: null
+  },
+  {
+    id: 'match-12',
+    gameweek: 28,
+    competition: 'Premier League',
+    status: 'COMPLETED',
+    minute: 'FT',
+    date: 'Monday, 9 March 2026',
+    dateIso: '2026-03-09',
+    time: '20:00 GMT',
+    venue: 'Selhurst Park',
+    referee: 'Craig Pawson',
+    attendance: '24,800',
+    homeTeamId: 'crystal-palace',
+    awayTeamId: 'burnley',
+    homeScore: 1,
+    awayScore: 1,
+    featured: false,
+    stats: {
+      possession: [57, 43],
+      shots: [14, 8],
+      shotsOnTarget: [5, 2],
+      xg: ['1.42', '0.62'],
+      corners: [7, 3],
+      fouls: [11, 15],
+      yellowCards: [1, 3],
+      redCards: [0, 0],
+      offsides: [2, 0],
+      passes: [480, 360],
+      passAccuracy: ['83%', '76%']
+    },
+    timeline: [
+      { minute: 38, type: 'GOAL', team: 'home', player: 'Eberechi Eze', detail: 'Direct free-kick' },
+      { minute: 82, type: 'GOAL', team: 'away', player: 'Lyle Foster', detail: 'Header' }
+    ],
+    lineups: null
+  }
+];
+
+export const getMatchById = (id) => {
+  return matches.find((m) => m.id === id) || matches[0];
+};
+
+export const getCompletedMatches = () => {
+  return matches.filter((m) => m.status === 'COMPLETED');
+};
+
+export const getUpcomingMatches = () => {
+  return matches.filter((m) => m.status === 'UPCOMING');
+};
+
+export const getMatchesByTeam = (teamId) => {
+  return matches.filter((m) => m.homeTeamId === teamId || m.awayTeamId === teamId);
+};
