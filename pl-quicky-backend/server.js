@@ -12,7 +12,22 @@ const Team = require("./models/Team");
 const Fixture = require("./models/Fixture");
 const Standing = require("./models/Standing");
 const Player = require("./models/Player");
-const { syncFixtures, parseFootballDataDate } = require("./scripts/sync_fixtures");
+let { syncFixtures, parseFootballDataDate, decodeHtmlEntities } = require("./scripts/sync_fixtures");
+if (typeof decodeHtmlEntities !== "function") {
+  decodeHtmlEntities = (value) => {
+    if (value === null || value === undefined) return "";
+    return String(value)
+      .replace(/&amp;/gi, "&")
+      .replace(/&#0*39;|&apos;|&#x27;/gi, "'")
+      .replace(/&quot;/gi, '"')
+      .replace(/&lt;/gi, "<")
+      .replace(/&gt;/gi, ">")
+      .replace(/&nbsp;/gi, " ")
+      .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+      .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+      .trim();
+  };
+}
 const { initScheduler, runFullSync, getSchedulerStatus } = require("./services/scheduler");
 
 const app = express();

@@ -11,10 +11,13 @@ const decodeHtmlEntities = (value) => {
   if (value === null || value === undefined) return "";
   return String(value)
     .replace(/&amp;/gi, "&")
-    .replace(/&#0*39;|&apos;/gi, "'")
+    .replace(/&#0*39;|&apos;|&#x27;/gi, "'")
     .replace(/&quot;/gi, '"')
     .replace(/&lt;/gi, "<")
     .replace(/&gt;/gi, ">")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
     .trim();
 };
 
