@@ -13,7 +13,7 @@ import { API_BASE_URL } from "../../config/api";
 const FormIndicator = ({ form = [] }) => {
   if (!Array.isArray(form) || form.length === 0) {
     return (
-      <span className="text-xs text-gray-400">
+      <span className="text-xs text-pl-muted">
         —
       </span>
     );
@@ -31,13 +31,13 @@ const FormIndicator = ({ form = [] }) => {
           "w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold";
 
         if (value === "W") {
-          className += " bg-green-100 text-green-700";
+          className += " bg-pl-pink/15 text-pl-pink";
         } else if (value === "D") {
-          className += " bg-gray-100 text-gray-600";
+          className += " bg-pl-navy text-slate-300";
         } else if (value === "L") {
-          className += " bg-red-100 text-red-700";
+          className += " bg-pl-magenta/15 text-pl-magenta";
         } else {
-          className += " bg-gray-100 text-gray-500";
+          className += " bg-pl-navy text-pl-lavender";
         }
 
         return (
@@ -260,21 +260,21 @@ const StandingsTable = ({
 
   const getPositionClass = (position) => {
     if (position <= 4) {
-      return "text-green-600";
+      return "text-pl-pink";
     }
 
     if (position >= 18) {
-      return "text-red-600";
+      return "text-pl-magenta";
     }
 
     if (
       position >= 5 &&
       position <= 7
     ) {
-      return "text-blue-600";
+      return "text-pl-violetLight";
     }
 
-    return "text-gray-700";
+    return "text-slate-200";
   };
 
 
@@ -298,7 +298,7 @@ const StandingsTable = ({
   if (loading) {
     return (
       <div className="w-full">
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-pl-card rounded-2xl shadow-sm border border-pl-border overflow-hidden">
 
           <div className="p-6">
 
@@ -308,7 +308,7 @@ const StandingsTable = ({
                 (item) => (
                   <div
                     key={item}
-                    className="h-12 bg-gray-100 rounded-lg"
+                    className="h-12 bg-pl-navy rounded-lg"
                   />
                 )
               )}
@@ -333,19 +333,19 @@ const StandingsTable = ({
     return (
       <div className="w-full">
 
-        <div className="bg-white rounded-2xl shadow-sm border border-red-100 p-6">
+        <div className="bg-pl-card rounded-2xl shadow-sm border border-pl-magenta/30 p-6">
 
           <div className="text-center">
 
-            <p className="text-red-600 font-medium">
+            <p className="text-pl-magenta font-medium">
               Unable to load standings
             </p>
 
-            <p className="text-sm text-gray-500 mt-1 break-words">
+            <p className="text-sm text-pl-lavender mt-1 break-words">
               {error}
             </p>
 
-            <p className="text-xs text-gray-400 mt-3">
+            <p className="text-xs text-pl-muted mt-3">
               API: {API_BASE_URL}
             </p>
 
@@ -367,7 +367,7 @@ const StandingsTable = ({
   return (
     <div className="w-full">
 
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-pl-card rounded-2xl shadow-sm border border-pl-border overflow-hidden">
 
 
         {/* HEADER */}
@@ -375,7 +375,7 @@ const StandingsTable = ({
         <div
           className={`${
             compact ? "p-4" : "p-6"
-          } border-b border-gray-100`}
+          } border-b border-pl-border`}
         >
 
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -383,7 +383,7 @@ const StandingsTable = ({
             <div>
 
               <h2
-                className={`font-bold text-gray-900 ${
+                className={`font-bold text-pl-text ${
                   compact
                     ? "text-lg"
                     : "text-xl"
@@ -393,7 +393,7 @@ const StandingsTable = ({
               </h2>
 
               {!compact && (
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-pl-lavender mt-1">
                   2026/27 Season
                 </p>
               )}
@@ -404,7 +404,7 @@ const StandingsTable = ({
             {/* TABS */}
 
             {allowTabs && (
-              <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
+              <div className="flex items-center gap-1 bg-pl-navy p-1 rounded-lg">
 
                 <button
                   type="button"
@@ -413,8 +413,8 @@ const StandingsTable = ({
                   }
                   className={`px-4 py-2 text-sm font-medium rounded-md transition ${
                     activeTab === "overall"
-                      ? "bg-white text-gray-900 shadow-sm"
-                      : "text-gray-500 hover:text-gray-900"
+                      ? "bg-pl-navy text-pl-pink shadow-sm"
+                      : "text-pl-lavender hover:text-pl-text"
                   }`}
                 >
                   Overall
@@ -428,8 +428,8 @@ const StandingsTable = ({
                   }
                   className={`px-4 py-2 text-sm font-medium rounded-md transition ${
                     activeTab === "home"
-                      ? "bg-white text-gray-900 shadow-sm"
-                      : "text-gray-500 hover:text-gray-900"
+                      ? "bg-pl-navy text-pl-pink shadow-sm"
+                      : "text-pl-lavender hover:text-pl-text"
                   }`}
                 >
                   Home
@@ -443,8 +443,8 @@ const StandingsTable = ({
                   }
                   className={`px-4 py-2 text-sm font-medium rounded-md transition ${
                     activeTab === "away"
-                      ? "bg-white text-gray-900 shadow-sm"
-                      : "text-gray-500 hover:text-gray-900"
+                      ? "bg-pl-navy text-pl-pink shadow-sm"
+                      : "text-pl-lavender hover:text-pl-text"
                   }`}
                 >
                   Away
@@ -460,9 +460,9 @@ const StandingsTable = ({
 
         {/* TABLE TYPE */}
 
-        <div className="px-6 py-3 bg-gray-50 border-b border-gray-100">
+        <div className="px-6 py-3 bg-pl-dark/40 border-b border-pl-border">
 
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+          <p className="text-xs font-semibold text-pl-lavender uppercase tracking-wide">
 
             {activeTab === "overall"
               ? "Overall Standings"
@@ -483,49 +483,49 @@ const StandingsTable = ({
 
             <thead>
 
-              <tr className="bg-gray-50 border-b border-gray-100">
+              <tr className="bg-pl-dark/40 border-b border-pl-border">
 
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide w-16">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-pl-lavender uppercase tracking-wide w-16">
                   #
                 </th>
 
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   Team
                 </th>
 
-                <th className="px-3 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-3 py-3 text-center text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   P
                 </th>
 
-                <th className="px-3 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-3 py-3 text-center text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   W
                 </th>
 
-                <th className="px-3 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-3 py-3 text-center text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   D
                 </th>
 
-                <th className="px-3 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-3 py-3 text-center text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   L
                 </th>
 
-                <th className="px-3 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-3 py-3 text-center text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   GF
                 </th>
 
-                <th className="px-3 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-3 py-3 text-center text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   GA
                 </th>
 
-                <th className="px-3 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-3 py-3 text-center text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   GD
                 </th>
 
-                <th className="px-3 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-3 py-3 text-center text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   Pts
                 </th>
 
-                <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="px-4 py-3 text-center text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                   Form
                 </th>
 
@@ -534,7 +534,7 @@ const StandingsTable = ({
             </thead>
 
 
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-pl-border">
 
               {displayData.map((row) => (
 
@@ -543,7 +543,7 @@ const StandingsTable = ({
                     row.teamId ||
                     row.teamName
                   }
-                  className="hover:bg-gray-50 transition-colors"
+                  className="hover:bg-pl-navy/60 transition-colors"
                 >
 
                   {/* POSITION */}
@@ -586,9 +586,9 @@ const StandingsTable = ({
 
                         ) : (
 
-                          <div className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center">
+                          <div className="w-7 h-7 rounded-full bg-pl-navy flex items-center justify-center">
 
-                            <span className="text-xs font-bold text-gray-500">
+                            <span className="text-xs font-bold text-pl-lavender">
                               {row.teamName
                                 ?.charAt(0)
                                 ?.toUpperCase()}
@@ -603,7 +603,7 @@ const StandingsTable = ({
 
                       <div className="min-w-0">
 
-                        <p className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors truncate">
+                        <p className="font-semibold text-pl-text group-hover:text-pl-pink transition-colors truncate">
                           {row.teamName}
                         </p>
 
@@ -611,7 +611,7 @@ const StandingsTable = ({
                           row.shortName !==
                             row.teamName && (
 
-                            <p className="text-xs text-gray-400">
+                            <p className="text-xs text-pl-muted">
                               {row.shortName}
                             </p>
 
@@ -626,42 +626,42 @@ const StandingsTable = ({
 
                   {/* PLAYED */}
 
-                  <td className="px-3 py-4 text-center text-sm text-gray-700">
+                  <td className="px-3 py-4 text-center text-sm text-slate-200">
                     {row.played}
                   </td>
 
 
                   {/* WON */}
 
-                  <td className="px-3 py-4 text-center text-sm text-gray-700">
+                  <td className="px-3 py-4 text-center text-sm text-slate-200">
                     {row.won}
                   </td>
 
 
                   {/* DRAWN */}
 
-                  <td className="px-3 py-4 text-center text-sm text-gray-700">
+                  <td className="px-3 py-4 text-center text-sm text-slate-200">
                     {row.drawn}
                   </td>
 
 
                   {/* LOST */}
 
-                  <td className="px-3 py-4 text-center text-sm text-gray-700">
+                  <td className="px-3 py-4 text-center text-sm text-slate-200">
                     {row.lost}
                   </td>
 
 
                   {/* GF */}
 
-                  <td className="px-3 py-4 text-center text-sm text-gray-700">
+                  <td className="px-3 py-4 text-center text-sm text-slate-200">
                     {row.goalsFor}
                   </td>
 
 
                   {/* GA */}
 
-                  <td className="px-3 py-4 text-center text-sm text-gray-700">
+                  <td className="px-3 py-4 text-center text-sm text-slate-200">
                     {row.goalsAgainst}
                   </td>
 
@@ -673,10 +673,10 @@ const StandingsTable = ({
                     <span
                       className={
                         row.goalDifference > 0
-                          ? "text-green-600"
+                          ? "text-pl-pink"
                           : row.goalDifference < 0
-                          ? "text-red-600"
-                          : "text-gray-600"
+                          ? "text-pl-magenta"
+                          : "text-slate-300"
                       }
                     >
 
@@ -693,7 +693,7 @@ const StandingsTable = ({
 
                   <td className="px-3 py-4 text-center">
 
-                    <span className="font-bold text-gray-900">
+                    <span className="font-bold text-pl-text">
                       {row.points}
                     </span>
 
@@ -727,7 +727,7 @@ const StandingsTable = ({
 
           <div className="p-10 text-center">
 
-            <p className="text-gray-500">
+            <p className="text-pl-lavender">
               No standings data available.
             </p>
 
@@ -740,26 +740,26 @@ const StandingsTable = ({
 
         {showLegend && (
 
-          <div className="px-6 py-4 border-t border-gray-100 bg-gray-50">
+          <div className="px-6 py-4 border-t border-pl-border bg-pl-dark/40">
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-gray-500">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-pl-lavender">
 
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                <span className="w-2.5 h-2.5 rounded-full bg-pl-pink" />
                 <span>
                   Champions League
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
+                <span className="w-2.5 h-2.5 rounded-full bg-pl-violet" />
                 <span>
                   European Competition
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                <span className="w-2.5 h-2.5 rounded-full bg-pl-magenta" />
                 <span>
                   Relegation
                 </span>
@@ -783,11 +783,11 @@ const StandingsTable = ({
         {limit &&
           standings.length > limit && (
 
-            <div className="px-6 py-4 border-t border-gray-100">
+            <div className="px-6 py-4 border-t border-pl-border">
 
               <Link
                 to="/standings"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-pl-pink hover:text-pl-pinkLight"
               >
                 View Full Standings
                 <ChevronRight className="w-4 h-4" />

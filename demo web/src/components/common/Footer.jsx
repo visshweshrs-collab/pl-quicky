@@ -5,7 +5,7 @@ import plLogo from '../../assets/pl-logo.svg';
 
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-pl-border/80 bg-[#130419] text-pl-lavender">
+    <footer className="mt-20 border-t border-pl-border/80 bg-pl-dark text-pl-lavender">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4 lg:grid-cols-5">
           
@@ -36,7 +36,7 @@ export default function Footer() {
               <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-pl-border bg-pl-card text-pl-muted hover:text-pl-pink hover:border-pl-pink/40 transition-colors cursor-pointer" title="Instagram">
                 <Instagram className="h-4 w-4" />
               </span>
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-pl-border bg-pl-card text-pl-muted hover:text-rose-500 hover:border-rose-500/40 transition-colors cursor-pointer" title="YouTube">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-pl-border bg-pl-card text-pl-muted hover:text-pl-magenta hover:border-pl-magenta/40 transition-colors cursor-pointer" title="YouTube">
                 <Youtube className="h-4 w-4" />
               </span>
               <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-pl-border bg-pl-card text-pl-muted hover:text-pl-pink hover:border-pl-pink/40 transition-colors cursor-pointer" title="Discord / Community">

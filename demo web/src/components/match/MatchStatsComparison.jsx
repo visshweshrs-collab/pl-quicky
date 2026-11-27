@@ -226,7 +226,7 @@ export default function MatchStatsComparison({
               className="h-6 w-6 object-contain"
             />
           ) : (
-            <div className="h-6 w-6 rounded-full bg-white/10" />
+            <div className="h-6 w-6 rounded-full bg-pl-navy" />
           )}
 
           <span className="font-display text-sm font-bold text-white">
@@ -256,7 +256,7 @@ export default function MatchStatsComparison({
               className="h-6 w-6 object-contain"
             />
           ) : (
-            <div className="h-6 w-6 rounded-full bg-white/10" />
+            <div className="h-6 w-6 rounded-full bg-pl-navy" />
           )}
 
         </div>
@@ -319,7 +319,7 @@ export default function MatchStatsComparison({
                   <span
                     className={`font-display text-sm ${
                       isAwayHigher
-                        ? 'font-black text-purple-300'
+                        ? 'font-black text-pl-violetLight'
                         : 'text-white'
                     }`}
                   >
@@ -329,13 +329,13 @@ export default function MatchStatsComparison({
                 </div>
 
                 {/* PROGRESS BARS */}
-                <div className="flex h-2.5 w-full gap-1 overflow-hidden rounded-full border border-pl-border/60 bg-[#15041D] p-0.5">
+                <div className="flex h-2.5 w-full gap-1 overflow-hidden rounded-full border border-pl-border/60 bg-pl-dark p-0.5">
 
                   {/* HOME */}
                   <div className="flex w-1/2 justify-end">
 
                     <div
-                      className="h-full rounded-l-full bg-gradient-to-r from-pink-600 to-pl-pink transition-all duration-500"
+                      className="h-full rounded-l-full bg-gradient-to-r from-pl-pink to-pl-pinkLight transition-all duration-500"
                       style={{
                         width: `${homePercent}%`
                       }}
@@ -347,7 +347,7 @@ export default function MatchStatsComparison({
                   <div className="flex w-1/2 justify-start">
 
                     <div
-                      className="h-full rounded-r-full bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-500"
+                      className="h-full rounded-r-full bg-gradient-to-r from-pl-violet to-pl-magenta transition-all duration-500"
                       style={{
                         width: `${awayPercent}%`
                       }}

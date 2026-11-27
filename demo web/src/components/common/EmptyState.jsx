@@ -17,7 +17,7 @@ export default function EmptyState({
       {actionLabel && onAction && (
         <button
           onClick={onAction}
-          className="inline-flex items-center gap-2 rounded-xl bg-pl-pink px-5 py-2.5 text-sm font-semibold text-white shadow-glow-pink hover:bg-pl-pinkLight transition-all"
+          className="inline-flex items-center gap-2 rounded-xl bg-pl-pink px-5 py-2.5 text-sm font-semibold text-pl-dark shadow-glow-pink hover:bg-pl-pinkLight transition-all"
         >
           <span>{actionLabel}</span>
           <ArrowRight className="h-4 w-4" />

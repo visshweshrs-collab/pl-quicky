@@ -40,7 +40,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="flex min-h-screen flex-col bg-pl-dark text-slate-100 selection:bg-pl-pink selection:text-white bg-premier-geometric">
+      <div className="flex min-h-screen flex-col bg-pl-dark text-slate-100 selection:bg-pl-pink selection:text-pl-dark bg-premier-geometric">
         
         {/* Navigation */}
         <Navbar

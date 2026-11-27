@@ -387,6 +387,15 @@ export default function HomePage({
                   ? fixture?.awayScore
                   : null,
 
+
+              // Goal scorers stored by the backend (FootballData events).
+              // Must be forwarded or MatchCard has nothing to render.
+              goalEvents:
+                (completed || isLive) &&
+                Array.isArray(fixture?.goalEvents)
+                  ? fixture.goalEvents
+                  : [],
+
             };
 
           })
@@ -722,7 +731,7 @@ export default function HomePage({
           HERO
       ================================================================ */}
 
-      <section className="relative overflow-hidden rounded-3xl border border-pl-border/70 bg-gradient-to-r from-[#200527] via-[#430A4C] to-[#600D55] p-6 sm:p-10 shadow-card">
+      <section className="relative overflow-hidden rounded-3xl border border-pl-border/70 bg-gradient-to-r from-[#0A2848] via-pl-card to-[#3A0B33] p-6 sm:p-10 shadow-card">
 
 
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-pl-purpleLight/40 via-transparent to-transparent pointer-events-none" />
@@ -739,7 +748,7 @@ export default function HomePage({
           <div className="max-w-xl space-y-4">
 
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-pl-pink/50 bg-[#350A3C]/70 px-4 py-1 text-xs font-bold uppercase tracking-wider text-pl-pinkLight backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 rounded-full border border-pl-pink/50 bg-pl-purple/70 px-4 py-1 text-xs font-bold uppercase tracking-wider text-pl-pinkLight backdrop-blur-md">
 
               <span className="flex items-center gap-0.5 text-pl-pink font-mono text-xs">
                 •••
@@ -790,7 +799,7 @@ export default function HomePage({
 
               <Link
                 to="/fixtures"
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FA007B] to-[#D8006E] px-6 py-3.5 text-xs sm:text-sm font-extrabold text-white shadow-glow-pink hover:opacity-95 transition-all"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-pl-pink to-pl-magenta px-6 py-3.5 text-xs sm:text-sm font-extrabold text-white shadow-glow-pink hover:opacity-95 transition-all"
               >
 
                 <span>
@@ -804,7 +813,7 @@ export default function HomePage({
 
               <Link
                 to="/standings"
-                className="inline-flex items-center gap-2 rounded-xl border border-pl-border bg-[#18051E]/80 px-6 py-3.5 text-xs sm:text-sm font-bold text-white hover:border-pl-pink/50 hover:bg-pl-card transition-all"
+                className="inline-flex items-center gap-2 rounded-xl border border-pl-border bg-pl-dark/80 px-6 py-3.5 text-xs sm:text-sm font-bold text-white hover:border-pl-pink/50 hover:bg-pl-card transition-all"
               >
 
                 <Trophy className="h-4 w-4 text-pl-pink" />
@@ -826,7 +835,7 @@ export default function HomePage({
           <div className="w-full lg:max-w-md">
 
 
-            <div className="relative overflow-hidden rounded-2xl border border-pl-pink/60 bg-[#16051D]/95 p-6 shadow-[0_0_25px_-5px_rgba(250,0,123,0.3)] backdrop-blur-xl">
+            <div className="relative overflow-hidden rounded-2xl border border-pl-pink/60 bg-pl-dark/95 p-6 shadow-[0_0_25px_-5px_rgba(0,168,232,0.3)] backdrop-blur-xl">
 
 
               <div className="flex items-center justify-between pb-4 border-b border-pl-border/60">
@@ -929,12 +938,12 @@ export default function HomePage({
 
                     <div className="col-span-1 flex flex-col items-center">
                       {featuredMatch.status === "LIVE" ? (
-                        <span className="flex flex-col items-center justify-center rounded-xl bg-rose-500/20 border border-rose-500/40 px-2 py-1 text-xs font-black text-white">
-                          <span className="text-[9px] text-rose-400 uppercase tracking-wider">LIVE</span>
+                        <span className="flex flex-col items-center justify-center rounded-xl bg-pl-magenta/20 border border-pl-magenta/40 px-2 py-1 text-xs font-black text-white">
+                          <span className="text-[9px] text-pl-magenta uppercase tracking-wider">LIVE</span>
                           <span>{featuredMatch.homeScore ?? 0}-{featuredMatch.awayScore ?? 0}</span>
                         </span>
                       ) : (
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#27082F] border border-pl-border text-[11px] font-black uppercase text-pl-pink">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-pl-navy border border-pl-border text-[11px] font-black uppercase text-pl-pink">
                           VS
                         </span>
                       )}
@@ -990,7 +999,7 @@ export default function HomePage({
 
                   {/* DETAILS */}
 
-                  <div className="space-y-2 rounded-xl bg-[#1F0726]/80 p-3.5 text-xs border border-pl-border/60">
+                  <div className="space-y-2 rounded-xl bg-pl-dark/80 p-3.5 text-xs border border-pl-border/60">
 
 
                     <div className="flex items-center justify-between text-slate-300">
@@ -1038,7 +1047,7 @@ export default function HomePage({
 
                     <Link
                       to={`/matches/${encodeURIComponent(String(featuredMatch.matchId ?? featuredMatch.id))}`}
-                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FA007B] to-[#D8006E] py-3.5 text-xs font-extrabold uppercase tracking-wider text-white shadow-glow-pink hover:opacity-95 transition-all"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-pl-pink to-pl-magenta py-3.5 text-xs font-extrabold uppercase tracking-wider text-white shadow-glow-pink hover:opacity-95 transition-all"
                     >
 
                       <span>

@@ -16,9 +16,9 @@ export default function TeamCard({ team }) {
             team.position <= 4 
               ? 'bg-pl-purple text-pl-pinkLight border border-pl-pink/40 shadow-glow-subtle'
               : team.position === 5
-              ? 'bg-[#2D0938] text-purple-200 border border-purple-500/40'
+              ? 'bg-pl-purple text-pl-violetLight border border-pl-violet/40'
               : team.position >= 18
-              ? 'bg-rose-950/60 text-rose-300 border border-rose-500/40'
+              ? 'bg-pl-magenta/60 text-pl-magenta border border-pl-magenta/40'
               : 'bg-pl-navy text-slate-300 border border-pl-border'
           }`}>
             {team.position}

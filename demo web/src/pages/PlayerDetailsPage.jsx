@@ -56,7 +56,7 @@ export default function PlayerDetailsPage() {
                 id: p.teamId,
                 name: p.teamName || 'Premier League Club',
                 logo: p.teamLogo || '',
-                primaryColor: '#FA007B'
+                primaryColor: '#00A8E8'
               };
 
             setTeam(resolvedTeam);
@@ -103,7 +103,7 @@ export default function PlayerDetailsPage() {
     return (
       <div className="flex min-h-[350px] flex-col items-center justify-center text-center space-y-4">
         <div className="h-10 w-10 animate-spin rounded-full border-2 border-pl-pink border-t-transparent" />
-        <p className="text-sm font-semibold text-white/50">Loading player profile...</p>
+        <p className="text-sm font-semibold text-pl-lavender">Loading player profile...</p>
       </div>
     );
   }
@@ -132,7 +132,7 @@ export default function PlayerDetailsPage() {
     id: player.teamId,
     name: player.teamName || 'Premier League Club',
     logo: player.teamLogo || '',
-    primaryColor: '#FA007B'
+    primaryColor: '#00A8E8'
   };
 
   const appearancesDisplay = player.appearances != null ? player.appearances : '—';
@@ -156,15 +156,15 @@ export default function PlayerDetailsPage() {
       </div>
 
       {/* Hero Player Header */}
-      <div className="relative overflow-hidden rounded-3xl border border-pl-border bg-gradient-to-br from-[#1C0825] via-pl-card to-[#120418] p-6 sm:p-10 shadow-card">
+      <div className="relative overflow-hidden rounded-3xl border border-pl-border bg-gradient-to-br from-pl-navy via-pl-card to-pl-dark p-6 sm:p-10 shadow-card">
         <div 
           className="absolute -right-20 -top-20 h-80 w-80 rounded-full opacity-20 blur-3xl pointer-events-none"
-          style={{ backgroundColor: teamData.primaryColor || '#FA007B' }}
+          style={{ backgroundColor: teamData.primaryColor || '#00A8E8' }}
         />
 
         <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
           {/* Large Player Image */}
-          <div className="relative h-44 w-44 sm:h-52 sm:w-52 flex-shrink-0 overflow-hidden rounded-3xl border-2 border-pl-border/80 bg-[#16051D] shadow-2xl">
+          <div className="relative h-44 w-44 sm:h-52 sm:w-52 flex-shrink-0 overflow-hidden rounded-3xl border-2 border-pl-border/80 bg-pl-dark shadow-2xl">
             {player.image ? (
               <img
                 src={player.image}
@@ -175,12 +175,12 @@ export default function PlayerDetailsPage() {
                 }}
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-white/20">
+              <div className="flex h-full w-full items-center justify-center text-pl-muted">
                 <Users size={64} />
               </div>
             )}
             {(player.squadNumber || player.shirtNumber) && (
-              <div className="absolute bottom-2 right-2 rounded-xl bg-[#130419]/90 px-2.5 py-1 text-xs font-mono font-black text-white border border-pl-border">
+              <div className="absolute bottom-2 right-2 rounded-xl bg-pl-dark/90 px-2.5 py-1 text-xs font-mono font-black text-white border border-pl-border">
                 #{player.squadNumber || player.shirtNumber}
               </div>
             )}
@@ -194,7 +194,7 @@ export default function PlayerDetailsPage() {
               </span>
               <Link
                 to={teamData.id ? `/teams/${teamData.id}` : '#'}
-                className="flex items-center gap-2 rounded-lg bg-[#18051E] px-3 py-1 text-xs font-bold text-white border border-pl-border hover:border-pl-pink/50 transition-colors"
+                className="flex items-center gap-2 rounded-lg bg-pl-dark px-3 py-1 text-xs font-bold text-white border border-pl-border hover:border-pl-pink/50 transition-colors"
               >
                 {teamData.logo && (
                   <img src={teamData.logo} alt={teamData.name} className="h-4 w-4 object-contain" />
@@ -304,14 +304,14 @@ export default function PlayerDetailsPage() {
                     <span className="text-pl-lavender">{attr.stat}</span>
                     <span className="font-mono text-sm font-bold text-white">{attr.value}</span>
                   </div>
-                  <div className="h-2.5 w-full rounded-full bg-[#15041D] border border-pl-border/60 overflow-hidden">
+                  <div className="h-2.5 w-full rounded-full bg-pl-dark border border-pl-border/60 overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-700 ${
                         attr.value >= 90
-                          ? 'bg-gradient-to-r from-pink-500 to-pl-pink shadow-glow-pink'
+                          ? 'bg-gradient-to-r from-pl-pink to-pl-violet shadow-glow-pink'
                           : attr.value >= 80
-                          ? 'bg-gradient-to-r from-purple-500 to-pl-purpleLight'
-                          : 'bg-gradient-to-r from-purple-800 to-purple-600'
+                          ? 'bg-gradient-to-r from-pl-violet to-pl-purpleLight'
+                          : 'bg-gradient-to-r from-pl-purple to-pl-violet'
                       }`}
                       style={{ width: `${attr.value}%` }}
                     />
@@ -332,27 +332,27 @@ export default function PlayerDetailsPage() {
             </div>
 
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-3 rounded-xl bg-[#15041D]/80 border border-pl-border/50 text-xs">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-pl-dark/80 border border-pl-border/50 text-xs">
                 <span className="text-pl-lavender font-medium">Expected Goals (xG)</span>
                 <span className="font-display text-sm font-bold text-pl-pink">{player.xg || '—'}</span>
               </div>
 
-              <div className="flex items-center justify-between p-3 rounded-xl bg-[#15041D]/80 border border-pl-border/50 text-xs">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-pl-dark/80 border border-pl-border/50 text-xs">
                 <span className="text-pl-lavender font-medium">Chances Created</span>
                 <span className="font-display text-sm font-bold text-white">{player.chancesCreated || '—'}</span>
               </div>
 
-              <div className="flex items-center justify-between p-3 rounded-xl bg-[#15041D]/80 border border-pl-border/50 text-xs">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-pl-dark/80 border border-pl-border/50 text-xs">
                 <span className="text-pl-lavender font-medium">Dribble Success Rate</span>
                 <span className="font-display text-sm font-bold text-pl-pinkLight">{player.dribblesSuccess || '—'}</span>
               </div>
 
-              <div className="flex items-center justify-between p-3 rounded-xl bg-[#15041D]/80 border border-pl-border/50 text-xs">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-pl-dark/80 border border-pl-border/50 text-xs">
                 <span className="text-pl-lavender font-medium">Aerial Duels Won</span>
                 <span className="font-display text-sm font-bold text-white">{player.aerialDuelsWon || '—'}</span>
               </div>
 
-              <div className="flex items-center justify-between p-3 rounded-xl bg-[#15041D]/80 border border-pl-border/50 text-xs">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-pl-dark/80 border border-pl-border/50 text-xs">
                 <span className="text-pl-lavender font-medium">Shots On Target Accuracy</span>
                 <span className="font-display text-sm font-bold text-pl-pink">{player.shotAccuracy || '—'}</span>
               </div>

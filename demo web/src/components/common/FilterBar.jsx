@@ -32,7 +32,7 @@ export default function FilterBar({
           >
             <span>{optLabel}</span>
             {count !== null && (
-              <span className={`rounded-full px-1.5 py-0.2 text-[10px] ${isActive ? 'bg-pl-pink text-white' : 'bg-[#15041D] text-pl-muted'}`}>
+              <span className={`rounded-full px-1.5 py-0.2 text-[10px] ${isActive ? 'bg-pl-pink text-pl-dark' : 'bg-pl-dark text-pl-muted'}`}>
                 {count}
               </span>
             )}

@@ -30,7 +30,7 @@ export default function MatchLineup({
     return (
       <div className="flex min-h-[280px] flex-col items-center justify-center text-center">
 
-        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-pl-border bg-[#18051E]">
+        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-pl-border bg-pl-dark">
           <Users className="h-8 w-8 text-pl-pink" />
         </div>
 
@@ -53,7 +53,7 @@ export default function MatchLineup({
       {/* HEADER */}
       <div className="text-center">
 
-        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[#18051E] border border-pl-border">
+        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-pl-dark border border-pl-border">
           <Users className="h-6 w-6 text-pl-pink" />
         </div>
 
@@ -100,12 +100,12 @@ function TeamLineup({
   const substitutes = lineup.substitutes;
 
   return (
-    <div className="rounded-2xl border border-pl-border bg-[#120418] overflow-hidden">
+    <div className="rounded-2xl border border-pl-border bg-pl-dark overflow-hidden">
 
       {/* TEAM HEADER */}
-      <div className="flex items-center gap-4 border-b border-pl-border bg-[#18051E] p-5">
+      <div className="flex items-center gap-4 border-b border-pl-border bg-pl-dark p-5">
 
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-pl-border bg-[#100314] p-2">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-pl-border bg-pl-dark p-2">
 
           {team?.logo ? (
             <img
@@ -267,10 +267,10 @@ function PlayerRow({
     '';
 
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.025] px-3 py-3 transition-colors hover:bg-white/[0.05]">
+    <div className="flex items-center gap-3 rounded-xl border border-pl-border/60 bg-pl-card px-3 py-3 transition-colors hover:bg-pl-navy">
 
       {/* NUMBER */}
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#1B0823] text-[11px] font-black text-pl-pink">
+      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-pl-navy text-[11px] font-black text-pl-pink">
 
         {number !== null &&
         number !== undefined &&
@@ -283,7 +283,7 @@ function PlayerRow({
       </div>
 
       {/* ICON */}
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-pl-border bg-[#18051E]">
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-pl-border bg-pl-dark">
 
         <UserRound className="h-4 w-4 text-pl-muted" />
 
@@ -305,7 +305,7 @@ function PlayerRow({
       </div>
 
       {substitute && (
-        <span className="rounded-md border border-white/10 px-2 py-1 text-[9px] font-bold uppercase text-pl-muted">
+        <span className="rounded-md border border-pl-border px-2 py-1 text-[9px] font-bold uppercase text-pl-muted">
           SUB
         </span>
       )}
@@ -457,7 +457,7 @@ function EmptyPlayers({
   text,
 }) {
   return (
-    <div className="rounded-xl border border-dashed border-pl-border bg-white/[0.02] p-4 text-center">
+    <div className="rounded-xl border border-dashed border-pl-border bg-pl-card p-4 text-center">
 
       <p className="text-xs font-semibold text-pl-muted">
         {text}

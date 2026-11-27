@@ -150,22 +150,22 @@ const StandingsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-transparent py-8">
         <div className="max-w-7xl mx-auto px-4">
           <div className="animate-pulse space-y-6">
 
-            <div className="h-10 bg-gray-200 rounded-lg w-64" />
+            <div className="h-10 bg-pl-navy rounded-lg w-64" />
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {[1, 2, 3, 4].map((item) => (
                 <div
                   key={item}
-                  className="h-28 bg-gray-200 rounded-2xl"
+                  className="h-28 bg-pl-navy rounded-2xl"
                 />
               ))}
             </div>
 
-            <div className="h-96 bg-gray-200 rounded-2xl" />
+            <div className="h-96 bg-pl-navy rounded-2xl" />
 
           </div>
         </div>
@@ -175,20 +175,20 @@ const StandingsPage = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-transparent py-8">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-white rounded-2xl border border-red-100 p-8 text-center">
-            <h2 className="text-xl font-bold text-red-600">
+          <div className="bg-pl-card rounded-2xl border border-pl-magenta/30 p-8 text-center">
+            <h2 className="text-xl font-bold text-pl-magenta">
               Unable to Load Standings
             </h2>
 
-            <p className="text-gray-500 mt-2">
+            <p className="text-pl-lavender mt-2">
               {error}
             </p>
 
             <button
               onClick={() => window.location.reload()}
-              className="mt-5 px-5 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
+              className="mt-5 px-5 py-2.5 bg-pl-pink text-pl-dark rounded-lg font-medium hover:bg-pl-pinkLight transition"
             >
               Try Again
             </button>
@@ -199,17 +199,17 @@ const StandingsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-transparent py-8">
 
       <div className="max-w-7xl mx-auto px-4">
 
         {/* PAGE HEADER */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+          <h1 className="text-3xl md:text-4xl font-bold text-pl-text">
             Premier League Standings
           </h1>
 
-          <p className="text-gray-500 mt-2">
+          <p className="text-pl-lavender mt-2">
             2026/27 Season
           </p>
         </div>
@@ -218,9 +218,9 @@ const StandingsPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
 
           {/* LEADER */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div className="bg-pl-card rounded-2xl border border-pl-border shadow-sm p-5">
 
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+            <p className="text-xs font-semibold text-pl-lavender uppercase tracking-wide">
               Current Leader
             </p>
 
@@ -238,8 +238,8 @@ const StandingsPage = () => {
                     }}
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-                    <span className="font-bold text-gray-500">
+                  <div className="w-10 h-10 rounded-full bg-pl-navy flex items-center justify-center">
+                    <span className="font-bold text-pl-lavender">
                       {leader.teamName
                         ?.charAt(0)
                         ?.toUpperCase()}
@@ -248,18 +248,18 @@ const StandingsPage = () => {
                 )}
 
                 <div>
-                  <p className="font-bold text-gray-900">
+                  <p className="font-bold text-pl-text">
                     {leader.teamName}
                   </p>
 
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-pl-lavender">
                     {leader.points} points
                   </p>
                 </div>
 
               </div>
             ) : (
-              <p className="text-gray-400 mt-4">
+              <p className="text-pl-muted mt-4">
                 No data
               </p>
             )}
@@ -267,58 +267,58 @@ const StandingsPage = () => {
           </div>
 
           {/* TOTAL GOALS */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div className="bg-pl-card rounded-2xl border border-pl-border shadow-sm p-5">
 
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+            <p className="text-xs font-semibold text-pl-lavender uppercase tracking-wide">
               Total Goals
             </p>
 
-            <p className="text-3xl font-bold text-gray-900 mt-3">
+            <p className="text-3xl font-bold text-pl-text mt-3">
               {totalGoals}
             </p>
 
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-pl-lavender mt-1">
               Across all teams
             </p>
 
           </div>
 
           {/* AVERAGE GOALS */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div className="bg-pl-card rounded-2xl border border-pl-border shadow-sm p-5">
 
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+            <p className="text-xs font-semibold text-pl-lavender uppercase tracking-wide">
               Avg. Goals / Game
             </p>
 
-            <p className="text-3xl font-bold text-gray-900 mt-3">
+            <p className="text-3xl font-bold text-pl-text mt-3">
               {averageGoals}
             </p>
 
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-pl-lavender mt-1">
               League average
             </p>
 
           </div>
 
           {/* SAFETY LINE */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div className="bg-pl-card rounded-2xl border border-pl-border shadow-sm p-5">
 
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+            <p className="text-xs font-semibold text-pl-lavender uppercase tracking-wide">
               Safety Line
             </p>
 
             {safetyLine ? (
               <>
-                <p className="text-3xl font-bold text-gray-900 mt-3">
+                <p className="text-3xl font-bold text-pl-text mt-3">
                   {safetyLine.points}
                 </p>
 
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-pl-lavender mt-1">
                   {safetyLine.teamName}
                 </p>
               </>
             ) : (
-              <p className="text-gray-400 mt-4">
+              <p className="text-pl-muted mt-4">
                 No data
               </p>
             )}
@@ -328,16 +328,16 @@ const StandingsPage = () => {
         </div>
 
         {/* BEST GD */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-8">
+        <div className="bg-pl-card rounded-2xl border border-pl-border shadow-sm p-5 mb-8">
 
           <div className="flex items-center justify-between">
 
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+              <p className="text-xs font-semibold text-pl-lavender uppercase tracking-wide">
                 Best Goal Difference
               </p>
 
-              <p className="text-2xl font-bold text-gray-900 mt-2">
+              <p className="text-2xl font-bold text-pl-text mt-2">
                 {bestGoalDifference > 0
                   ? `+${bestGoalDifference}`
                   : bestGoalDifference}
@@ -345,11 +345,11 @@ const StandingsPage = () => {
             </div>
 
             <div className="text-right">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-pl-lavender">
                 Ranked by
               </p>
 
-              <p className="text-sm font-medium text-gray-700">
+              <p className="text-sm font-medium text-slate-200">
                 Points → GD → GF → Wins
               </p>
             </div>

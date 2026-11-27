@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 
 import { getTeamById, getTeamByApiId, getTeamByName } from '../../data/teams';
+import GoalScorers from './GoalScorers';
 
 export default function MatchCard({ match }) {
   if (!match) return null;
@@ -94,12 +95,12 @@ export default function MatchCard({ match }) {
   return (
     <Link
       to={`/matches/${encodeURIComponent(String(matchId))}`}
-      className="group block"
+      className="group block h-full"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-pl-border bg-[#120318] p-5 transition-all duration-300 hover:border-pl-pink/50 hover:bg-[#18051E] hover:-translate-y-0.5">
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-pl-border bg-pl-card p-5 transition-all duration-300 hover:border-pl-pink/50 hover:bg-pl-navy hover:-translate-y-0.5">
 
         {/* Top gradient */}
-        <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-purple-700 via-pl-pink to-purple-400" />
+        <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-pl-pink via-pl-violet to-pl-magenta" />
 
         {/* =================================================
             HEADER
@@ -123,9 +124,9 @@ export default function MatchCard({ match }) {
           <span
             className={`rounded-lg px-2.5 py-1 text-[10px] font-black uppercase tracking-wider ${
               isCompleted
-                ? 'bg-white/5 text-slate-300'
+                ? 'bg-pl-navy/70 text-slate-300'
                 : isLive
-                  ? 'bg-red-500/10 text-red-300'
+                  ? 'bg-pl-magenta/10 text-pl-magenta'
                   : 'bg-pl-pink/10 text-pl-pink'
             }`}
           >
@@ -156,7 +157,7 @@ export default function MatchCard({ match }) {
                 }}
               />
             ) : (
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-sm font-black text-white">
+              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-pl-navy/70 text-sm font-black text-white">
                 {(homeTeam?.shortName ||
                   homeTeam?.name ||
                   'H')
@@ -198,7 +199,7 @@ export default function MatchCard({ match }) {
             </div>
 
             {isLive && (
-              <span className="mt-1 text-[10px] font-bold uppercase text-red-300">
+              <span className="mt-1 text-[10px] font-bold uppercase text-pl-magenta">
                 Live
               </span>
             )}
@@ -218,7 +219,7 @@ export default function MatchCard({ match }) {
                 }}
               />
             ) : (
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-sm font-black text-white">
+              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-pl-navy/70 text-sm font-black text-white">
                 {(awayTeam?.shortName ||
                   awayTeam?.name ||
                   'A')
@@ -239,9 +240,24 @@ export default function MatchCard({ match }) {
         </div>
 
         {/* =================================================
+            GOAL SCORERS
+        ================================================= */}
+        {(isCompleted || isLive) && (
+          <GoalScorers
+            events={match.goalEvents}
+            homeScore={match.homeScore}
+            awayScore={match.awayScore}
+            completed={isCompleted}
+            className="mt-4 border-t border-pl-border/40 pt-3"
+          />
+        )}
+
+        {/* =================================================
             DATE / TIME / VENUE
         ================================================= */}
-        <div className="mt-5 grid grid-cols-1 gap-2 border-t border-pl-border/60 pt-4 text-[11px] text-pl-muted sm:grid-cols-3">
+        <div className="min-h-5 flex-1" />
+
+        <div className="grid grid-cols-1 gap-2 border-t border-pl-border/60 pt-4 text-[11px] text-pl-muted sm:grid-cols-3">
 
           <div className="flex items-center justify-center gap-1.5">
             <Calendar className="h-3.5 w-3.5" />

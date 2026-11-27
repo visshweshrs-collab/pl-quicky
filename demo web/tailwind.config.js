@@ -8,33 +8,43 @@ export default {
     extend: {
       colors: {
         pl: {
-          dark: '#110616',        // Very dark purple / almost black background
-          navy: '#17071F',        // Secondary deep plum surface
-          card: '#1C0825',        // Dark plum/purple card background
-          cardHover: '#250B30',   // Card hover state
-          border: '#3D0F45',      // Thin plum/magenta border
-          borderLight: '#591663', // Slightly lighter purple border
-          borderPink: '#FA007B',  // Vibrant magenta border
-          purple: '#4A0B4F',      // Deep purple
-          purpleLight: '#6B145F', // Rich purple accent
-          purpleGlow: '#9E1C8C',  // Violet glow
-          pink: '#FA007B',        // Bright hot pink / magenta primary
-          pinkLight: '#FF2B9A',   // Light magenta highlight
-          lavender: '#C8B6D6',    // Light lavender secondary text
-          muted: '#8D769E',       // Muted purple/gray
+          // Existing token names are kept so components need no changes;
+          // only their values move to the new midnight / cyan / magenta palette.
+          dark: '#0B051D',        // Primary background
+          navy: '#1E1142',        // Tertiary background (inputs / hover)
+          card: '#140B2E',        // Secondary background (cards)
+          cardHover: '#1E1142',   // Card hover state
+          border: '#2D1B5E',      // Borders and dividers
+          borderLight: '#3F2A80', // Slightly lighter border
+          borderPink: '#00A8E8',  // Accent border (now cyan)
+          purple: '#241452',      // Deep violet surface (chips / active states)
+          purpleLight: '#34206F', // Lighter violet surface
+          purpleGlow: '#7B52C7',  // Violet
+          pink: '#00A8E8',        // Primary accent (now Primary Cyan)
+          pinkLight: '#19B8F5',   // Accent highlight (now Cyan Hover)
+          lavender: '#94A3B8',    // Secondary text
+          muted: '#64748B',       // Muted text
           white: '#FFFFFF',
-          green: '#FA007B',       // Redirected to magenta for primary badges
-          cyan: '#FF2B9A',        // Redirected to hot pink for accents
+          green: '#00A8E8',       // Redirected to primary accent
+          cyan: '#19B8F5',        // Accent highlight
+
+          // New palette names (additions only)
+          cyanHover: '#19B8F5',
+          violet: '#7B52C7',
+          violetLight: '#A78BFA', // Lighter violet tint for text on dark surfaces
+          magenta: '#E61C78',
+          text: '#F8FAFC',        // Primary text
+
           gray: {
-            100: '#F5F0F8',
-            200: '#E6DCED',
-            300: '#C8B6D6',
-            400: '#8D769E',
-            500: '#6E587E',
-            600: '#523E61',
-            700: '#3D2A4B',
-            800: '#281734',
-            900: '#1A0B24'
+            100: '#F8FAFC',
+            200: '#E2E8F0',
+            300: '#CBD5E1',
+            400: '#94A3B8',
+            500: '#64748B',
+            600: '#475569',
+            700: '#2D1B5E',
+            800: '#1E1142',
+            900: '#140B2E'
           }
         }
       },
@@ -43,18 +53,22 @@ export default {
         display: ['Outfit', 'Inter', 'sans-serif']
       },
       boxShadow: {
-        'glow-pink': '0 0 25px -4px rgba(250, 0, 123, 0.45)',
-        'glow-purple': '0 0 30px -5px rgba(107, 20, 95, 0.5)',
-        'glow-subtle': '0 0 15px -3px rgba(250, 0, 123, 0.25)',
-        'card': '0 8px 32px rgba(0, 0, 0, 0.6)',
-        'card-hover': '0 12px 40px rgba(0, 0, 0, 0.8), 0 0 20px -3px rgba(250, 0, 123, 0.25)'
+        'glow-pink': '0 0 25px -4px rgba(0, 168, 232, 0.45)',
+        'glow-purple': '0 0 30px -5px rgba(123, 82, 199, 0.5)',
+        'glow-subtle': '0 0 15px -3px rgba(0, 168, 232, 0.25)',
+        'card': '0 8px 32px rgba(3, 1, 12, 0.6)',
+        'card-hover': '0 12px 40px rgba(3, 1, 12, 0.8), 0 0 20px -3px rgba(0, 168, 232, 0.25)'
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(135deg, #4A0B4F 0%, #34073A 40%, #1D0522 100%)',
-        'pink-gradient': 'linear-gradient(90deg, #FA007B 0%, #D8006E 100%)',
-        'match-gradient': 'linear-gradient(135deg, rgba(74, 11, 79, 0.7) 0%, rgba(28, 8, 37, 0.9) 100%)',
-        'card-gradient': 'linear-gradient(145deg, rgba(35, 9, 44, 0.9) 0%, rgba(22, 6, 29, 0.95) 100%)',
-        'accent-pink': 'linear-gradient(90deg, #FA007B 0%, #FF2B9A 100%)'
+        'hero-gradient': 'linear-gradient(135deg, rgba(0, 168, 232, 0.14) 0%, #140B2E 42%, #140B2E 60%, rgba(230, 28, 120, 0.13) 100%)',
+        'pink-gradient': 'linear-gradient(135deg, #00A8E8 0%, #5B6EE1 45%, #A63A9E 75%, #E61C78 100%)',
+        'match-gradient': 'linear-gradient(135deg, rgba(0, 168, 232, 0.08) 0%, rgba(20, 11, 46, 0.95) 55%)',
+        'card-gradient': 'linear-gradient(145deg, rgba(30, 17, 66, 0.9) 0%, rgba(20, 11, 46, 0.95) 100%)',
+        'accent-pink': 'linear-gradient(90deg, #00A8E8 0%, #5B6EE1 45%, #A63A9E 75%, #E61C78 100%)',
+
+        // Brand gradient (additions)
+        'brand-gradient': 'linear-gradient(135deg, #00A8E8 0%, #5B6EE1 45%, #A63A9E 75%, #E61C78 100%)',
+        'brand-gradient-x': 'linear-gradient(90deg, #00A8E8 0%, #5B6EE1 45%, #A63A9E 75%, #E61C78 100%)'
       }
     },
   },

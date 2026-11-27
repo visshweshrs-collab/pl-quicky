@@ -14,6 +14,7 @@ import {
 import MatchStatsComparison from '../components/match/MatchStatsComparison';
 import MatchTimeline from '../components/match/MatchTimeline';
 import MatchLineup from '../components/match/MatchLineup';
+import GoalScorers from '../components/match/GoalScorers';
 
 import { getTeamByApiId } from '../data/teams';
 import { API_BASE_URL } from '../config/api';
@@ -225,13 +226,13 @@ export default function MatchDetailsPage() {
           <span>Back to Fixtures</span>
         </Link>
 
-        <div className="rounded-3xl border border-red-500/20 bg-red-500/5 p-8 text-center">
+        <div className="rounded-3xl border border-pl-magenta/20 bg-pl-magenta/5 p-8 text-center">
 
           <h2 className="text-xl font-black text-white">
             Match not found
           </h2>
 
-          <p className="mt-2 text-sm text-red-300">
+          <p className="mt-2 text-sm text-pl-magenta">
             {error || 'Unable to load this match.'}
           </p>
 
@@ -325,7 +326,7 @@ export default function MatchDetailsPage() {
 
       <div className="relative overflow-hidden rounded-3xl border border-pl-border bg-hero-gradient p-6 sm:p-10 shadow-card">
 
-        <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-purple-800 via-pl-pink to-purple-400" />
+        <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-pl-pink via-pl-violet to-pl-magenta" />
 
         {/* TOP BAR */}
 
@@ -337,7 +338,7 @@ export default function MatchDetailsPage() {
               {match.competition}
             </span>
 
-            <span className="text-purple-900">
+            <span className="text-pl-borderLight">
               •
             </span>
 
@@ -347,7 +348,7 @@ export default function MatchDetailsPage() {
 
           </div>
 
-          <span className="rounded-lg bg-[#18051E] px-3 py-1 text-xs font-black tracking-wider text-pl-pink border border-pl-pink/30">
+          <span className="rounded-lg bg-pl-dark px-3 py-1 text-xs font-black tracking-wider text-pl-pink border border-pl-pink/30">
             {isCompleted
               ? 'FULL TIME'
               : match.status === 'LIVE'
@@ -359,16 +360,16 @@ export default function MatchDetailsPage() {
 
         {/* SCOREBOARD */}
 
-        <div className="my-8 grid grid-cols-7 items-center gap-4 text-center">
+        <div className="my-8 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 sm:gap-4 text-center">
 
           {/* HOME TEAM */}
 
           <Link
             to={`/teams/${homeTeam.id}`}
-            className="col-span-3 flex flex-col items-center group transition-transform hover:scale-105"
+            className="flex min-w-0 flex-col items-center group transition-transform hover:scale-105"
           >
 
-            <div className="relative mb-3 flex h-20 w-20 sm:h-28 sm:w-28 items-center justify-center rounded-3xl bg-[#16051D] p-4 shadow-xl border border-pl-border/80">
+            <div className="relative mb-3 flex h-20 w-20 sm:h-28 sm:w-28 items-center justify-center rounded-3xl bg-pl-dark p-4 shadow-xl border border-pl-border/80">
 
               {homeTeam.logo ? (
                 <img
@@ -399,13 +400,13 @@ export default function MatchDetailsPage() {
 
           {/* SCORE */}
 
-          <div className="col-span-1 flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center">
 
             {isCompleted || isLive ? (
 
               <div className="flex flex-col items-center gap-1">
 
-                <div className="flex items-center gap-2 sm:gap-3 font-display text-4xl sm:text-6xl font-black tracking-tight text-white bg-[#18051E] px-4 sm:px-6 py-2 rounded-2xl border border-pl-border shadow-inner">
+                <div className="flex items-center gap-2 sm:gap-3 font-display text-4xl sm:text-6xl font-black tracking-tight text-white bg-pl-dark px-4 sm:px-6 py-2 rounded-2xl border border-pl-border shadow-inner">
 
                   <span
                     className={
@@ -418,7 +419,7 @@ export default function MatchDetailsPage() {
                     {match.homeScore ?? 0}
                   </span>
 
-                  <span className="text-purple-700 text-3xl font-light">
+                  <span className="text-pl-borderLight text-3xl font-light">
                     -
                   </span>
 
@@ -445,7 +446,7 @@ export default function MatchDetailsPage() {
 
               <div className="flex flex-col items-center gap-1">
 
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#18051E] border border-pl-border font-display text-sm font-black text-pl-pinkLight shadow-inner">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-pl-dark border border-pl-border font-display text-sm font-black text-pl-pinkLight shadow-inner">
                   VS
                 </div>
 
@@ -463,10 +464,10 @@ export default function MatchDetailsPage() {
 
           <Link
             to={`/teams/${awayTeam.id}`}
-            className="col-span-3 flex flex-col items-center group transition-transform hover:scale-105"
+            className="flex min-w-0 flex-col items-center group transition-transform hover:scale-105"
           >
 
-            <div className="relative mb-3 flex h-20 w-20 sm:h-28 sm:w-28 items-center justify-center rounded-3xl bg-[#16051D] p-4 shadow-xl border border-pl-border/80">
+            <div className="relative mb-3 flex h-20 w-20 sm:h-28 sm:w-28 items-center justify-center rounded-3xl bg-pl-dark p-4 shadow-xl border border-pl-border/80">
 
               {awayTeam.logo ? (
                 <img
@@ -498,10 +499,25 @@ export default function MatchDetailsPage() {
         </div>
 
         {/* =================================================
+            GOAL SCORERS
+        ================================================= */}
+
+        {(isCompleted || isLive) && (
+          <GoalScorers
+            events={timeline}
+            homeScore={match.homeScore}
+            awayScore={match.awayScore}
+            completed={isCompleted}
+            large
+            className="mb-6 -mt-2 border-t border-pl-border/60 pt-5"
+          />
+        )}
+
+        {/* =================================================
             MATCH METADATA
         ================================================= */}
 
-        <div className="flex flex-wrap items-center justify-center gap-6 border-t border-pl-border/60 pt-4 text-xs text-pl-lavender">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-pl-border/60 pt-4 text-xs text-pl-lavender">
 
           {/* DATE */}
 
@@ -515,7 +531,7 @@ export default function MatchDetailsPage() {
 
           </span>
 
-          <span>•</span>
+          <span className="hidden sm:inline">•</span>
 
           {/* KICKOFF */}
 
@@ -529,7 +545,7 @@ export default function MatchDetailsPage() {
 
           </span>
 
-          <span>•</span>
+          <span className="hidden sm:inline">•</span>
 
           {/* VENUE */}
 
@@ -547,7 +563,7 @@ export default function MatchDetailsPage() {
 
           {match.referee && (
             <>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
 
               <span className="text-pl-muted">
                 Referee:{' '}
@@ -570,27 +586,30 @@ export default function MatchDetailsPage() {
 
       <div className="flex items-center justify-center">
 
-        <div className="flex flex-wrap items-center justify-center rounded-2xl bg-pl-card p-1.5 border border-pl-border shadow-inner">
+        <div className="flex w-full sm:w-auto items-center justify-center rounded-2xl bg-pl-card p-1.5 border border-pl-border shadow-inner">
 
           {/* STATS */}
 
           <button
             onClick={() => setActiveTab('stats')}
-            className={`flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
+            className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-6 py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
               activeTab === 'stats'
                 ? 'bg-pl-purple text-white shadow-glow-pink/30 border border-pl-pink'
                 : 'text-pl-muted hover:text-white'
             }`}
           >
             <Activity className="h-4 w-4" />
-            <span>Match Statistics</span>
+            <span>
+              <span className="sm:hidden">Stats</span>
+              <span className="hidden sm:inline">Match Statistics</span>
+            </span>
           </button>
 
           {/* TIMELINE */}
 
           <button
             onClick={() => setActiveTab('timeline')}
-            className={`flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
+            className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-6 py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
               activeTab === 'timeline'
                 ? 'bg-pl-purple text-white shadow-glow-pink/30 border border-pl-pink'
                 : 'text-pl-muted hover:text-white'
@@ -604,7 +623,7 @@ export default function MatchDetailsPage() {
 
           <button
             onClick={() => setActiveTab('lineups')}
-            className={`flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
+            className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-6 py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
               activeTab === 'lineups'
                 ? 'bg-pl-purple text-white shadow-glow-pink/30 border border-pl-pink'
                 : 'text-pl-muted hover:text-white'
