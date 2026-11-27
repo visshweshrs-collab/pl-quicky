@@ -20,7 +20,7 @@ export default function SearchBar({
       {value && (
         <button
           onClick={() => onChange('')}
-          className="absolute right-3 rounded-full p-1 text-slate-400 hover:bg-slate-800 hover:text-white transition-colors"
+          className="absolute right-3 rounded-full p-1 text-slate-400 hover:bg-pl-navy hover:text-white transition-colors"
           title="Clear search"
         >
           <X className="h-3.5 w-3.5" />

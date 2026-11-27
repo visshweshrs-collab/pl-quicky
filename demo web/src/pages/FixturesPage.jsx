@@ -733,13 +733,13 @@ export default function FixturesPage() {
     return (
       <div className="space-y-6 pb-12">
 
-        <div className="rounded-3xl border border-red-500/20 bg-red-500/5 p-8 text-center">
+        <div className="rounded-3xl border border-pl-magenta/20 bg-pl-magenta/5 p-8 text-center">
 
           <h2 className="text-xl font-black text-white">
             Unable to load fixtures
           </h2>
 
-          <p className="mt-2 text-sm text-red-300">
+          <p className="mt-2 text-sm text-pl-magenta">
             {error}
           </p>
 
@@ -747,7 +747,7 @@ export default function FixturesPage() {
             onClick={() =>
               window.location.reload()
             }
-            className="mt-5 rounded-xl bg-pl-pink px-5 py-2.5 text-xs font-bold text-white transition hover:opacity-90"
+            className="mt-5 rounded-xl bg-pl-pink px-5 py-2.5 text-xs font-bold text-pl-dark transition hover:opacity-90"
           >
             Try Again
           </button>

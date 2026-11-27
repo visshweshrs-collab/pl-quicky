@@ -10,13 +10,13 @@ export default function FormIndicator({ form = [], size = 'md' }) {
   const getResultStyle = (res) => {
     switch (res?.toUpperCase()) {
       case 'W':
-        return 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-[0_0_8px_rgba(16,185,129,0.25)]';
+        return 'bg-pl-pink/20 text-pl-pink border border-pl-pink/40 shadow-[0_0_8px_rgba(0,168,232,0.25)]';
       case 'D':
-        return 'bg-amber-500/20 text-amber-300 border border-amber-500/40';
+        return 'bg-pl-violet/20 text-pl-violetLight border border-pl-violet/40';
       case 'L':
-        return 'bg-rose-500/20 text-rose-400 border border-rose-500/40 shadow-[0_0_8px_rgba(244,63,94,0.25)]';
+        return 'bg-pl-magenta/20 text-pl-magenta border border-pl-magenta/40 shadow-[0_0_8px_rgba(230,28,120,0.25)]';
       default:
-        return 'bg-slate-800 text-slate-400 border border-slate-700';
+        return 'bg-pl-navy text-slate-400 border border-pl-border';
     }
   };
 

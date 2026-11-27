@@ -102,7 +102,7 @@ export default function Navbar({ favouriteTeamId, onSelectFavouriteTeam }) {
                 className={({ isActive }) =>
                   `text-sm font-semibold transition-all ${
                     isActive
-                      ? 'text-white bg-pl-purple/60 border border-pl-pink shadow-[0_0_15px_rgba(250,0,123,0.35)] rounded-full px-4 py-1.5'
+                      ? 'text-white bg-pl-purple/60 border border-pl-pink shadow-[0_0_15px_rgba(0,168,232,0.35)] rounded-full px-4 py-1.5'
                       : 'text-slate-300 hover:text-white px-3.5 py-1.5 rounded-full hover:bg-pl-card/60'
                   }`
                 }
@@ -192,7 +192,7 @@ export default function Navbar({ favouriteTeamId, onSelectFavouriteTeam }) {
 
           {/* User Profile Avatar Placeholder */}
           <div className="hidden sm:flex items-center gap-2 pl-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-pl-border bg-[#18051E] text-slate-300 shadow-inner">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-pl-border bg-pl-dark text-slate-300 shadow-inner">
               <User className="h-4 w-4 text-pl-pinkLight" />
             </div>
           </div>

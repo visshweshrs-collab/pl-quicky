@@ -60,8 +60,8 @@ export default function PlayerCard({ player }) {
   const playerId = player?.id ?? player?.playerId;
 
   const cardContent = (
-    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-pink-500/40 hover:bg-white/[0.07]">
-      <div className="relative h-64 overflow-hidden bg-gradient-to-b from-white/5 to-black/20">
+    <div className="group relative overflow-hidden rounded-2xl border border-pl-border bg-pl-card transition-all duration-300 hover:-translate-y-1 hover:border-pl-pink/40 hover:bg-pl-navy">
+      <div className="relative h-64 overflow-hidden bg-gradient-to-b from-pl-navy/50 to-pl-dark/20">
         {player?.image && !imageError ? (
           <img
             src={player.image}
@@ -70,15 +70,15 @@ export default function PlayerCard({ player }) {
             onError={() => setImageError(true)}
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-900/40 via-slate-900 to-pink-900/30">
-            <span className="text-5xl font-black text-white/30">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pl-violet/30 via-pl-card to-pl-magenta/20">
+            <span className="text-5xl font-black text-pl-muted">
               {initials}
             </span>
           </div>
         )}
 
         <div className="absolute left-3 top-3">
-          <span className="rounded-lg border border-white/10 bg-black/60 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
+          <span className="rounded-lg border border-pl-border bg-pl-dark/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
             {getPositionBadge(player?.position)}
           </span>
         </div>
@@ -87,17 +87,17 @@ export default function PlayerCard({ player }) {
           player?.number !== null &&
           player.number !== '' && (
             <div className="absolute right-3 top-3">
-              <span className="rounded-lg bg-pink-500 px-2.5 py-1 text-xs font-black text-white">
+              <span className="rounded-lg bg-pl-pink px-2.5 py-1 text-xs font-black text-pl-dark">
                 #{player.number}
               </span>
             </div>
           )}
 
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#08080d] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-pl-dark to-transparent" />
       </div>
 
       <div className="p-4">
-        <div className="mb-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-pink-400">
+        <div className="mb-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-pl-pink">
           2026/27 Season
         </div>
 
@@ -105,14 +105,14 @@ export default function PlayerCard({ player }) {
           {player?.name || 'Unknown Player'}
         </h3>
 
-        <p className="mt-1 truncate text-xs text-white/50">
+        <p className="mt-1 truncate text-xs text-pl-lavender">
           {player?.nationality || 'Nationality unavailable'}
           {player?.age ? ` • ${player.age} yrs` : ''}
         </p>
 
-        <div className="mt-4 grid grid-cols-3 gap-2 border-t border-white/10 pt-4">
+        <div className="mt-4 grid grid-cols-3 gap-2 border-t border-pl-border pt-4">
           <div>
-            <p className="text-[9px] font-semibold uppercase tracking-wider text-white/40">
+            <p className="text-[9px] font-semibold uppercase tracking-wider text-pl-muted">
               Apps
             </p>
             <p className="mt-1 text-lg font-black text-white">
@@ -121,7 +121,7 @@ export default function PlayerCard({ player }) {
           </div>
 
           <div>
-            <p className="text-[9px] font-semibold uppercase tracking-wider text-white/40">
+            <p className="text-[9px] font-semibold uppercase tracking-wider text-pl-muted">
               Goals
             </p>
             <p className="mt-1 text-lg font-black text-white">
@@ -130,7 +130,7 @@ export default function PlayerCard({ player }) {
           </div>
 
           <div>
-            <p className="text-[9px] font-semibold uppercase tracking-wider text-white/40">
+            <p className="text-[9px] font-semibold uppercase tracking-wider text-pl-muted">
               Assists
             </p>
             <p className="mt-1 text-lg font-black text-white">
@@ -139,7 +139,7 @@ export default function PlayerCard({ player }) {
           </div>
         </div>
 
-        <div className="mt-4 flex items-center justify-between text-xs font-bold text-white/50 transition-colors group-hover:text-pink-400">
+        <div className="mt-4 flex items-center justify-between text-xs font-bold text-pl-lavender transition-colors group-hover:text-pl-pink">
           <span>View player</span>
           <ChevronRight size={16} />
         </div>
@@ -147,7 +147,7 @@ export default function PlayerCard({ player }) {
 
       {player?.isHot && (
         <div className="absolute right-3 top-3">
-          <div className="flex items-center gap-1 rounded-lg bg-orange-500 px-2 py-1 text-[10px] font-black text-white">
+          <div className="flex items-center gap-1 rounded-lg bg-pl-magenta px-2 py-1 text-[10px] font-black text-white">
             <Flame size={12} />
             HOT
           </div>
@@ -156,7 +156,7 @@ export default function PlayerCard({ player }) {
 
       {player?.isStar && (
         <div className="absolute left-3 top-3">
-          <div className="flex items-center gap-1 rounded-lg bg-purple-500 px-2 py-1 text-[10px] font-black text-white">
+          <div className="flex items-center gap-1 rounded-lg bg-pl-violet px-2 py-1 text-[10px] font-black text-white">
             <Sparkles size={12} />
             STAR
           </div>

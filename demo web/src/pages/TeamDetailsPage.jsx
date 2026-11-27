@@ -102,17 +102,17 @@ function ResultBadge({ result }) {
   const normalized = String(result).toUpperCase();
 
   let label = normalized;
-  let classes = 'bg-white/10 text-white/70';
+  let classes = 'bg-pl-navy text-pl-lavender';
 
   if (normalized === 'W') {
     label = 'W';
-    classes = 'bg-emerald-500/20 text-emerald-400';
+    classes = 'bg-pl-pink/20 text-pl-pink';
   } else if (normalized === 'D') {
     label = 'D';
-    classes = 'bg-yellow-500/20 text-yellow-400';
+    classes = 'bg-pl-violet/20 text-pl-violetLight';
   } else if (normalized === 'L') {
     label = 'L';
-    classes = 'bg-red-500/20 text-red-400';
+    classes = 'bg-pl-magenta/20 text-pl-magenta';
   }
 
   return (
@@ -179,9 +179,9 @@ function MatchRow({ match, teamId }) {
     match?.id;
 
   const content = (
-    <div className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-pink-500/40 hover:bg-white/[0.06]">
+    <div className="flex items-center justify-between rounded-xl border border-pl-border bg-pl-card p-4 transition-colors hover:border-pl-pink/40 hover:bg-pl-navy">
       <div className="min-w-0">
-        <p className="text-xs font-semibold text-white/40">
+        <p className="text-xs font-semibold text-pl-muted">
           {match?.dateIST || formatDate(match?.date || match?.matchDate)}
         </p>
 
@@ -196,12 +196,12 @@ function MatchRow({ match, teamId }) {
               }}
             />
           ) : (
-            <div className="h-8 w-8 rounded-full bg-white/10" />
+            <div className="h-8 w-8 rounded-full bg-pl-navy" />
           )}
 
           <div>
             <p className="font-bold text-white">{opponent}</p>
-            <p className="text-xs text-white/40">
+            <p className="text-xs text-pl-muted">
               {isHome ? 'Home' : 'Away'}
             </p>
           </div>
@@ -212,7 +212,7 @@ function MatchRow({ match, teamId }) {
         {score ? (
           <p className="text-xl font-black text-white">{score}</p>
         ) : (
-          <p className="text-sm font-bold text-white/40">
+          <p className="text-sm font-bold text-pl-muted">
             {match?.timeIST || formatTime(match?.date || match?.matchDate)}
           </p>
         )}
@@ -339,16 +339,16 @@ export default function TeamDetailsPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#08080d] px-6 py-10 text-white">
+      <div className="min-h-screen bg-pl-dark px-6 py-10 text-white">
         <div className="mx-auto max-w-7xl">
           <div className="animate-pulse">
-            <div className="h-5 w-32 rounded bg-white/10" />
-            <div className="mt-8 h-56 rounded-3xl bg-white/5" />
+            <div className="h-5 w-32 rounded bg-pl-navy" />
+            <div className="mt-8 h-56 rounded-3xl bg-pl-navy/70" />
             <div className="mt-8 grid gap-6 lg:grid-cols-4">
-              <div className="h-32 rounded-2xl bg-white/5" />
-              <div className="h-32 rounded-2xl bg-white/5" />
-              <div className="h-32 rounded-2xl bg-white/5" />
-              <div className="h-32 rounded-2xl bg-white/5" />
+              <div className="h-32 rounded-2xl bg-pl-navy/70" />
+              <div className="h-32 rounded-2xl bg-pl-navy/70" />
+              <div className="h-32 rounded-2xl bg-pl-navy/70" />
+              <div className="h-32 rounded-2xl bg-pl-navy/70" />
             </div>
           </div>
         </div>
@@ -358,22 +358,22 @@ export default function TeamDetailsPage({
 
   if (error || !team) {
     return (
-      <div className="min-h-screen bg-[#08080d] px-6 py-10 text-white">
+      <div className="min-h-screen bg-pl-dark px-6 py-10 text-white">
         <div className="mx-auto max-w-3xl">
           <Link
             to="/teams"
-            className="inline-flex items-center gap-2 text-sm font-bold text-white/60 transition hover:text-white"
+            className="inline-flex items-center gap-2 text-sm font-bold text-pl-lavender transition hover:text-white"
           >
             <ArrowLeft size={16} />
             Back to Teams
           </Link>
 
-          <div className="mt-10 rounded-2xl border border-red-500/20 bg-red-500/10 p-6">
+          <div className="mt-10 rounded-2xl border border-pl-magenta/20 bg-pl-magenta/10 p-6">
             <h1 className="text-xl font-black">
               Could not load team profile
             </h1>
 
-            <p className="mt-2 text-sm text-white/60">
+            <p className="mt-2 text-sm text-pl-lavender">
               {error || 'The requested team was not found.'}
             </p>
           </div>
@@ -383,24 +383,24 @@ export default function TeamDetailsPage({
   }
 
   return (
-    <div className="min-h-screen bg-[#08080d] px-4 py-8 text-white md:px-6">
+    <div className="min-h-screen bg-pl-dark px-4 py-8 text-white md:px-6">
       <div className="mx-auto max-w-7xl">
         <Link
           to="/teams"
-          className="inline-flex items-center gap-2 text-sm font-bold text-white/50 transition hover:text-white"
+          className="inline-flex items-center gap-2 text-sm font-bold text-pl-lavender transition hover:text-white"
         >
           <ArrowLeft size={16} />
           Back to Teams
         </Link>
 
         {/* Team Header */}
-        <section className="relative mt-6 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-purple-950/60 via-[#11111a] to-pink-950/30 p-6 md:p-8">
-          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-600/10 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-pink-600/10 blur-3xl" />
+        <section className="relative mt-6 overflow-hidden rounded-3xl border border-pl-border bg-gradient-to-br from-pl-pink/10 via-pl-card to-pl-magenta/10 p-6 md:p-8">
+          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-pl-violet/10 blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-pl-magenta/10 blur-3xl" />
 
           <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-5">
-              <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/30 p-3">
+              <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl border border-pl-border bg-pl-dark/70 p-3">
                 {team.logo ? (
                   <img
                     src={team.logo}
@@ -411,12 +411,12 @@ export default function TeamDetailsPage({
                     }}
                   />
                 ) : (
-                  <Trophy className="text-white/30" size={38} />
+                  <Trophy className="text-pl-muted" size={38} />
                 )}
               </div>
 
               <div>
-                <div className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-pink-400">
+                <div className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-pl-pink">
                   Premier League • 2026/27
                 </div>
 
@@ -424,7 +424,7 @@ export default function TeamDetailsPage({
                   {team.name}
                 </h1>
 
-                <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-white/50">
+                <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-pl-lavender">
                   {team.stadiumName && (
                     <span className="flex items-center gap-1.5">
                       <MapPin size={14} />
@@ -443,8 +443,8 @@ export default function TeamDetailsPage({
               onClick={toggleFavourite}
               className={`inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-black transition ${
                 isFavourite
-                  ? 'border-pink-500 bg-pink-500 text-white'
-                  : 'border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+                  ? 'border-pl-pink bg-pl-pink text-pl-dark'
+                  : 'border-pl-border bg-pl-navy/70 text-pl-lavender hover:bg-pl-navy hover:text-white'
               }`}
             >
               {isFavourite ? (
@@ -459,8 +459,8 @@ export default function TeamDetailsPage({
 
         {/* Position + Record */}
         <section className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">
+          <div className="rounded-2xl border border-pl-border bg-pl-card p-5">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-pl-muted">
               League Position
             </p>
             <p className="mt-2 text-4xl font-black text-white">
@@ -468,8 +468,8 @@ export default function TeamDetailsPage({
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">
+          <div className="rounded-2xl border border-pl-border bg-pl-card p-5">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-pl-muted">
               Points
             </p>
             <p className="mt-2 text-4xl font-black text-white">
@@ -477,8 +477,8 @@ export default function TeamDetailsPage({
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">
+          <div className="rounded-2xl border border-pl-border bg-pl-card p-5">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-pl-muted">
               Record
             </p>
             <p className="mt-2 text-2xl font-black text-white">
@@ -486,8 +486,8 @@ export default function TeamDetailsPage({
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">
+          <div className="rounded-2xl border border-pl-border bg-pl-card p-5">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-pl-muted">
               Goal Difference
             </p>
             <p className="mt-2 text-4xl font-black text-white">
@@ -500,36 +500,36 @@ export default function TeamDetailsPage({
         {/* Advanced Stats */}
         <section className="mt-8">
           <div className="mb-4 flex items-center gap-3">
-            <div className="rounded-lg bg-pink-500/10 p-2 text-pink-400">
+            <div className="rounded-lg bg-pl-pink/10 p-2 text-pl-pink">
               <Trophy size={18} />
             </div>
             <h2 className="text-xl font-black">Team Stats</h2>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-              <p className="text-xs text-white/40">Goals Scored</p>
+            <div className="rounded-2xl border border-pl-border bg-pl-card p-5">
+              <p className="text-xs text-pl-muted">Goals Scored</p>
               <p className="mt-2 text-2xl font-black">
                 {team.goalsFor ?? 0}
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-              <p className="text-xs text-white/40">Goals Conceded</p>
+            <div className="rounded-2xl border border-pl-border bg-pl-card p-5">
+              <p className="text-xs text-pl-muted">Goals Conceded</p>
               <p className="mt-2 text-2xl font-black">
                 {team.goalsAgainst ?? 0}
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-              <p className="text-xs text-white/40">Possession</p>
+            <div className="rounded-2xl border border-pl-border bg-pl-card p-5">
+              <p className="text-xs text-pl-muted">Possession</p>
               <p className="mt-2 text-2xl font-black">
                 {metricValue(team.avgPossession, '%')}
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-              <p className="text-xs text-white/40">Pass Accuracy</p>
+            <div className="rounded-2xl border border-pl-border bg-pl-card p-5">
+              <p className="text-xs text-pl-muted">Pass Accuracy</p>
               <p className="mt-2 text-2xl font-black">
                 {metricValue(team.passAccuracy, '%')}
               </p>
@@ -539,13 +539,13 @@ export default function TeamDetailsPage({
 
         {/* Form */}
         {recentForm.length > 0 && (
-          <section className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          <section className="mt-8 rounded-2xl border border-pl-border bg-pl-card p-5">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-white/40">
+                <p className="text-xs font-bold uppercase tracking-widest text-pl-muted">
                   Recent Form
                 </p>
-                <p className="mt-1 text-sm text-white/50">
+                <p className="mt-1 text-sm text-pl-lavender">
                   Last {recentForm.length} matches
                 </p>
               </div>
@@ -563,13 +563,13 @@ export default function TeamDetailsPage({
         <section className="mt-10">
           <div className="mb-5 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-purple-500/10 p-2 text-purple-400">
+              <div className="rounded-lg bg-pl-violet/10 p-2 text-pl-violetLight">
                 <Users size={18} />
               </div>
 
               <div>
                 <h2 className="text-xl font-black">Key Players</h2>
-                <p className="text-xs text-white/40">
+                <p className="text-xs text-pl-muted">
                   2026/27 season statistics
                 </p>
               </div>
@@ -586,12 +586,12 @@ export default function TeamDetailsPage({
               ))}
             </div>
           ) : (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 text-center">
+            <div className="rounded-2xl border border-pl-border bg-pl-card p-8 text-center">
               <Users
                 size={32}
-                className="mx-auto text-white/20"
+                className="mx-auto text-pl-muted"
               />
-              <p className="mt-3 font-bold text-white/60">
+              <p className="mt-3 font-bold text-pl-lavender">
                 Player data is not available yet.
               </p>
             </div>
@@ -602,7 +602,7 @@ export default function TeamDetailsPage({
         <section className="mt-10 grid gap-8 lg:grid-cols-2">
           <div>
             <div className="mb-5 flex items-center gap-3">
-              <Calendar size={18} className="text-pink-400" />
+              <Calendar size={18} className="text-pl-pink" />
               <h2 className="text-xl font-black">Recent Matches</h2>
             </div>
 
@@ -616,7 +616,7 @@ export default function TeamDetailsPage({
                   />
                 ))
               ) : (
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-sm text-white/40">
+                <div className="rounded-2xl border border-pl-border bg-pl-card p-6 text-sm text-pl-muted">
                   No recent matches available.
                 </div>
               )}
@@ -625,7 +625,7 @@ export default function TeamDetailsPage({
 
           <div>
             <div className="mb-5 flex items-center gap-3">
-              <Clock size={18} className="text-purple-400" />
+              <Clock size={18} className="text-pl-violetLight" />
               <h2 className="text-xl font-black">Upcoming Matches</h2>
             </div>
 
@@ -639,7 +639,7 @@ export default function TeamDetailsPage({
                   />
                 ))
               ) : (
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-sm text-white/40">
+                <div className="rounded-2xl border border-pl-border bg-pl-card p-6 text-sm text-pl-muted">
                   No upcoming matches available.
                 </div>
               )}
@@ -649,38 +649,38 @@ export default function TeamDetailsPage({
 
         {/* API stats fallback/debug-safe section */}
         {stats && Object.keys(stats).length > 0 && (
-          <section className="mt-10 rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <section className="mt-10 rounded-2xl border border-pl-border bg-pl-card p-6">
             <div className="mb-5">
               <h2 className="text-xl font-black">Season Overview</h2>
-              <p className="mt-1 text-xs text-white/40">
+              <p className="mt-1 text-xs text-pl-muted">
                 Data supplied by the current 2026/27 team statistics.
               </p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div>
-                <p className="text-xs text-white/40">Clean Sheets</p>
+                <p className="text-xs text-pl-muted">Clean Sheets</p>
                 <p className="mt-1 text-xl font-black">
                   {metricValue(team.cleanSheets)}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs text-white/40">Matches Played</p>
+                <p className="text-xs text-pl-muted">Matches Played</p>
                 <p className="mt-1 text-xl font-black">
                   {team.played ?? 0}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs text-white/40">Goals For</p>
+                <p className="text-xs text-pl-muted">Goals For</p>
                 <p className="mt-1 text-xl font-black">
                   {team.goalsFor ?? 0}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs text-white/40">Goals Against</p>
+                <p className="text-xs text-pl-muted">Goals Against</p>
                 <p className="mt-1 text-xl font-black">
                   {team.goalsAgainst ?? 0}
                 </p>

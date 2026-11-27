@@ -70,7 +70,7 @@ export default function MatchTimeline({
   if (isZeroZero) {
     return (
       <div className="py-12 text-center">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#18051E] border border-pl-border text-slate-400 mb-3 shadow-inner">
+        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-pl-dark border border-pl-border text-slate-400 mb-3 shadow-inner">
           <span className="text-xl">⚽</span>
         </div>
         <p className="font-display text-sm font-bold text-white">
@@ -87,7 +87,7 @@ export default function MatchTimeline({
     if (isCompleted) {
       return (
         <div className="py-12 text-center">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#18051E] border border-pl-border text-slate-400 mb-3 shadow-inner">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-pl-dark border border-pl-border text-slate-400 mb-3 shadow-inner">
             <span className="text-xl">⚽</span>
           </div>
           <p className="font-display text-sm font-bold text-white">
@@ -169,7 +169,7 @@ export default function MatchTimeline({
 
               {/* Minute badge in center */}
               <div className="z-10 flex flex-col items-center">
-                <span className="whitespace-nowrap rounded-full bg-[#18051E] px-2 py-0.5 text-[10px] font-extrabold text-pl-pinkLight border border-pl-border shadow-sm">
+                <span className="whitespace-nowrap rounded-full bg-pl-dark px-2 py-0.5 text-[10px] font-extrabold text-pl-pinkLight border border-pl-border shadow-sm">
                   {displayMinute}
                 </span>
               </div>

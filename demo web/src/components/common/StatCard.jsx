@@ -10,10 +10,10 @@ export default function StatCard({
   color = 'pink' 
 }) {
   const accentColors = {
-    pink: 'from-[#FA007B]/25 to-transparent border-[#FA007B]/40 text-pl-pink',
-    purple: 'from-[#6B145F]/30 to-transparent border-[#6B145F]/50 text-purple-300',
-    lavender: 'from-purple-500/20 to-transparent border-purple-500/30 text-pl-lavender',
-    amber: 'from-amber-500/20 to-transparent border-amber-500/30 text-amber-300'
+    pink: 'from-[#00A8E8]/25 to-transparent border-[#00A8E8]/40 text-pl-pink',
+    purple: 'from-[#7B52C7]/30 to-transparent border-[#7B52C7]/50 text-pl-violetLight',
+    lavender: 'from-pl-violet/20 to-transparent border-pl-violet/30 text-pl-lavender',
+    amber: 'from-pl-violet/20 to-transparent border-pl-violet/30 text-pl-violetLight'
   };
 
   return (
@@ -30,7 +30,7 @@ export default function StatCard({
               {value}
             </h3>
             {trend && (
-              <span className={`text-xs font-semibold ${trend > 0 ? 'text-pl-pink' : 'text-rose-400'}`}>
+              <span className={`text-xs font-semibold ${trend > 0 ? 'text-pl-pink' : 'text-pl-magenta'}`}>
                 {trend > 0 ? `+${trend}` : trend}
               </span>
             )}
