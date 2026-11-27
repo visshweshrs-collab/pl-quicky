@@ -1,5 +1,56 @@
 import React from 'react';
 
+const UNKNOWN_NAMES = new Set(['', 'unknown player', 'player', 'unknown']);
+
+function EventCard({ event, align }) {
+  const isRight = align === 'right';
+
+  const rawName = String(
+    event.knownName || event.playerName || event.player || ''
+  ).trim();
+  const playerName = UNKNOWN_NAMES.has(rawName.toLowerCase())
+    ? 'Scorer unavailable'
+    : rawName;
+
+  const detailText = String(event.detail || '');
+  const isOg =
+    event.isOwnGoal === true || detailText.toLowerCase().includes('own goal');
+  const isPenalty = detailText.toLowerCase().includes('penalty');
+
+  // Own goals and penalties get their own label; other detail strings
+  // ("Left foot shot", "Header") are shown as a quiet subtitle.
+  const subtitle = isOg
+    ? 'Own goal'
+    : isPenalty
+      ? 'Penalty'
+      : detailText && detailText.toLowerCase() !== 'goal'
+        ? detailText
+        : '';
+
+  return (
+    <div
+      className={`inline-flex max-w-full items-center gap-2 rounded-xl border bg-pl-card/90 px-3 py-2 shadow-md transition-colors hover:border-pl-pink/50 ${
+        isOg ? 'border-pl-pink/40' : 'border-pl-border'
+      } ${isRight ? 'flex-row-reverse text-right' : 'text-left'}`}
+    >
+      <span className="text-sm select-none" role="img" aria-label="goal">
+        ⚽
+      </span>
+
+      <div className="min-w-0">
+        <p className="font-display text-xs sm:text-sm font-bold leading-snug text-white [overflow-wrap:anywhere]">
+          {playerName}
+          {isOg && <span className="ml-1 text-pl-pinkLight">(OG)</span>}
+        </p>
+
+        {subtitle && (
+          <p className="text-[10px] leading-tight text-pl-muted">{subtitle}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function MatchTimeline({
   timeline = [],
   homeTeam,
@@ -66,10 +117,22 @@ export default function MatchTimeline({
     return extA - extB;
   });
 
+  const eventsOnSide = (side) =>
+    sortedEvents.filter(
+      (event) =>
+        String(event.teamSide || event.team || '').toLowerCase() === side
+    ).length;
+
+  const missingGoals =
+    isCompleted && homeScore !== null && awayScore !== null
+      ? Math.max(0, Number(homeScore) - eventsOnSide('home')) +
+        Math.max(0, Number(awayScore) - eventsOnSide('away'))
+      : 0;
+
   return (
     <div className="relative py-4">
       {/* Team column headers */}
-      <div className="flex items-center justify-between pb-6 border-b border-pl-border/50 text-xs font-bold uppercase tracking-wider text-pl-pinkLight">
+      <div className="flex items-center justify-between gap-2 pb-5 border-b border-pl-border/50 text-xs font-bold uppercase tracking-wider text-pl-pinkLight">
         <div className="w-[45%] text-right truncate">
           {homeTeam?.name || 'Home'}
         </div>
@@ -88,11 +151,6 @@ export default function MatchTimeline({
         {sortedEvents.map((event, idx) => {
           const side = String(event.teamSide || event.team || '').toLowerCase();
           const isHome = side === 'home';
-          const playerName = event.playerName || event.player || 'Player';
-          const isOg =
-            event.isOwnGoal === true ||
-            String(event.detail || '').toLowerCase().includes('own goal');
-          const displayName = isOg ? `${playerName} (OG)` : playerName;
           const displayMinute =
             event.displayMinute ||
             (event.extraMinute
@@ -100,81 +158,38 @@ export default function MatchTimeline({
               : `${event.minute || 0}'`);
 
           return (
-            <div key={idx} className="relative flex items-center justify-between">
+            <div
+              key={idx}
+              className="relative flex items-center justify-between gap-2"
+            >
               {/* Home Team Event (Left) */}
-              <div
-                className={`w-[44%] text-right ${
-                  isHome ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                }`}
-              >
-                {isHome && (
-                  <div className="inline-flex items-center gap-2 rounded-xl border border-pl-border bg-pl-card/90 px-3.5 py-2.5 shadow-md hover:border-pl-pink/50 transition-colors">
-                    <span className="font-mono text-xs font-black text-pl-pinkLight">
-                      {displayMinute}
-                    </span>
-                    <span
-                      className="text-sm select-none"
-                      role="img"
-                      aria-label="goal"
-                    >
-                      ⚽
-                    </span>
-                    <div className="text-right">
-                      <p className="font-display text-xs sm:text-sm font-bold text-white">
-                        {displayName}
-                      </p>
-                      {event.detail && !isOg && (
-                        <p className="text-[10px] text-pl-muted">
-                          {event.detail}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                )}
+              <div className="flex w-[43%] min-w-0 justify-end">
+                {isHome && <EventCard event={event} align="right" />}
               </div>
 
               {/* Minute badge in center */}
               <div className="z-10 flex flex-col items-center">
-                <span className="rounded-full bg-[#18051E] px-2 py-0.5 text-[10px] font-extrabold text-pl-pinkLight border border-pl-border shadow-sm">
+                <span className="whitespace-nowrap rounded-full bg-[#18051E] px-2 py-0.5 text-[10px] font-extrabold text-pl-pinkLight border border-pl-border shadow-sm">
                   {displayMinute}
                 </span>
               </div>
 
               {/* Away Team Event (Right) */}
-              <div
-                className={`w-[44%] text-left ${
-                  !isHome ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                }`}
-              >
-                {!isHome && (
-                  <div className="inline-flex items-center gap-2 rounded-xl border border-pl-border bg-pl-card/90 px-3.5 py-2.5 shadow-md hover:border-pl-pink/50 transition-colors">
-                    <div className="text-left">
-                      <p className="font-display text-xs sm:text-sm font-bold text-white">
-                        {displayName}
-                      </p>
-                      {event.detail && !isOg && (
-                        <p className="text-[10px] text-pl-muted">
-                          {event.detail}
-                        </p>
-                      )}
-                    </div>
-                    <span
-                      className="text-sm select-none"
-                      role="img"
-                      aria-label="goal"
-                    >
-                      ⚽
-                    </span>
-                    <span className="font-mono text-xs font-black text-pl-pinkLight">
-                      {displayMinute}
-                    </span>
-                  </div>
-                )}
+              <div className="flex w-[43%] min-w-0 justify-start">
+                {!isHome && <EventCard event={event} align="left" />}
               </div>
             </div>
           );
         })}
       </div>
+
+      {missingGoals > 0 && (
+        <p className="mt-6 text-center text-[11px] text-pl-muted">
+          {missingGoals === 1
+            ? '1 goal is not itemised by the data provider.'
+            : `${missingGoals} goals are not itemised by the data provider.`}
+        </p>
+      )}
     </div>
   );
 }

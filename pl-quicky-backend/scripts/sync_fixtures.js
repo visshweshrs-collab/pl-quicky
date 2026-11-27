@@ -331,7 +331,9 @@ async function syncFixtures() {
       if (
         existing.goalEvents &&
         existing.goalEvents.length > 0 &&
-        existing.goalEvents.length === expectedGoals
+        existing.goalEvents.length === expectedGoals &&
+        // Events stored before `knownName` existed are refreshed once, then preserved.
+        existing.goalEvents.every((e) => e.knownName)
       ) {
         fixtureDoc.goalEvents = existing.goalEvents;
       } else if ((isCompleted || fixtureDoc.status === "Finished") && expectedGoals > 0) {

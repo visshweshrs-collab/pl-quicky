@@ -6,10 +6,19 @@ const Fixture = require("../models/Fixture");
 
 function cleanPlayerName(str) {
   if (!str) return "Unknown Player";
-  return String(str)
+  const cleaned = String(str)
+    // Proper JSON-style escapes, e.g. "ø"
     .replace(/\\u([0-9a-fA-F]{4})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
-    .replace(/u([0-9a-fA-F]{4})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+    // Escapes whose backslash was stripped upstream, e.g. "Mu00fcller".
+    // Limited to the Latin letter ranges (U+00A0-U+024F) so ordinary surnames
+    // that merely contain a "u" followed by four hex-like letters are never rewritten.
+    .replace(
+      /u(00[a-fA-F][0-9a-fA-F]|01[0-9a-fA-F]{2}|02[0-4][0-9a-fA-F])/g,
+      (_, hex) => String.fromCharCode(parseInt(hex, 16))
+    )
+    .replace(/\s+/g, " ")
     .trim();
+  return cleaned || "Unknown Player";
 }
 
 /**
@@ -148,6 +157,98 @@ function parseGoalEvents(rawEvents, homeScore, awayScore, homeTeamName, awayTeam
   return goalEvents;
 }
 
+// ---------------------------------------------------------------------------
+// Known (display) names
+//
+// The match events endpoint only returns the provider's legal name, e.g.
+// "Bukayo Ayoyinka Saka". The players endpoint returns the name fans know
+// ("Bukayo Saka") as `known_name`, keyed by the same player_id. One squad
+// lookup per team is cached so a full sync costs ~20 extra calls, not one per goal.
+// ---------------------------------------------------------------------------
+const SEASON_ID = 103535;
+const LEAGUE_ID = 15;
+const KNOWN_NAME_TTL_MS = 6 * 60 * 60 * 1000;
+const KNOWN_NAME_RETRY_MS = 10 * 60 * 1000;
+const knownNameCache = new Map(); // teamId -> { expiresAt, names: Map<playerId, knownName> }
+
+async function getKnownNames(teamId, apiKey) {
+  const id = Number(teamId);
+  if (!id) return new Map();
+
+  const cached = knownNameCache.get(id);
+  if (cached && cached.expiresAt > Date.now()) return cached.names;
+
+  const names = new Map();
+  let ok = false;
+  try {
+    const response = await fetch(
+      `https://footballdata.io/api/v1/teams/${id}/players?season_id=${SEASON_ID}&league_id=${LEAGUE_ID}&page=1&limit=100`,
+      { headers: { Authorization: `Bearer ${apiKey}`, Accept: "application/json" } }
+    );
+    if (response.ok) {
+      ok = true;
+      const data = await response.json();
+      const list = Array.isArray(data.data?.players)
+        ? data.data.players
+        : Array.isArray(data.data)
+          ? data.data
+          : [];
+      for (const p of list) {
+        const playerId = Number(p?.player_id ?? p?.id);
+        if (playerId && p?.known_name) {
+          names.set(playerId, cleanPlayerName(p.known_name));
+        }
+      }
+    }
+  } catch (err) {
+    console.warn(`Could not load squad names for team ${id}:`, err.message);
+  }
+
+  // Failed lookups are retried sooner than successful ones.
+  knownNameCache.set(id, {
+    expiresAt: Date.now() + (ok ? KNOWN_NAME_TTL_MS : KNOWN_NAME_RETRY_MS),
+    names
+  });
+  return names;
+}
+
+/**
+ * Adds `knownName` (always a non-empty string; falls back to the full name) and
+ * fills `teamId` from the side the goal is credited to. Own goals look the
+ * scorer up in both squads because the player belongs to the opposing team.
+ */
+async function enrichGoalEvents(goals, homeTeamId, awayTeamId, apiKey) {
+  if (!goals.length) return goals;
+
+  let nameMaps = [];
+  try {
+    nameMaps = await Promise.all([
+      getKnownNames(homeTeamId, apiKey),
+      getKnownNames(awayTeamId, apiKey)
+    ]);
+  } catch (err) {
+    console.warn("Known-name enrichment skipped:", err.message);
+  }
+
+  return goals.map((goal) => {
+    let knownName = "";
+    for (const map of nameMaps) {
+      const found = map.get(Number(goal.playerId));
+      if (found) {
+        knownName = found;
+        break;
+      }
+    }
+
+    return {
+      ...goal,
+      knownName: knownName || goal.playerName,
+      teamId:
+        goal.teamId ?? (goal.teamSide === "home" ? homeTeamId : awayTeamId) ?? null
+    };
+  });
+}
+
 /**
  * Fetches and parses goal events for a given match ID from FootballData API.
  */
@@ -174,7 +275,15 @@ async function fetchGoalEventsForMatch(matchId, homeScore, awayScore, homeTeamNa
 
   const data = await response.json();
   const rawEvents = data.data?.events || [];
-  return parseGoalEvents(rawEvents, homeScore, awayScore, homeTeamName, awayTeamName);
+  const goals = parseGoalEvents(rawEvents, homeScore, awayScore, homeTeamName, awayTeamName);
+
+  const matchInfo = data.data?.match || {};
+  return enrichGoalEvents(
+    goals,
+    matchInfo.home_team?.team_id ?? null,
+    matchInfo.away_team?.team_id ?? null,
+    apiKey
+  );
 }
 
 /**

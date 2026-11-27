@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 
 import { getTeamById, getTeamByApiId, getTeamByName } from '../../data/teams';
+import GoalScorers from './GoalScorers';
 
 export default function MatchCard({ match }) {
   if (!match) return null;
@@ -94,9 +95,9 @@ export default function MatchCard({ match }) {
   return (
     <Link
       to={`/matches/${encodeURIComponent(String(matchId))}`}
-      className="group block"
+      className="group block h-full"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-pl-border bg-[#120318] p-5 transition-all duration-300 hover:border-pl-pink/50 hover:bg-[#18051E] hover:-translate-y-0.5">
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-pl-border bg-[#120318] p-5 transition-all duration-300 hover:border-pl-pink/50 hover:bg-[#18051E] hover:-translate-y-0.5">
 
         {/* Top gradient */}
         <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-purple-700 via-pl-pink to-purple-400" />
@@ -239,9 +240,24 @@ export default function MatchCard({ match }) {
         </div>
 
         {/* =================================================
+            GOAL SCORERS
+        ================================================= */}
+        {(isCompleted || isLive) && (
+          <GoalScorers
+            events={match.goalEvents}
+            homeScore={match.homeScore}
+            awayScore={match.awayScore}
+            completed={isCompleted}
+            className="mt-4 border-t border-pl-border/40 pt-3"
+          />
+        )}
+
+        {/* =================================================
             DATE / TIME / VENUE
         ================================================= */}
-        <div className="mt-5 grid grid-cols-1 gap-2 border-t border-pl-border/60 pt-4 text-[11px] text-pl-muted sm:grid-cols-3">
+        <div className="min-h-5 flex-1" />
+
+        <div className="grid grid-cols-1 gap-2 border-t border-pl-border/60 pt-4 text-[11px] text-pl-muted sm:grid-cols-3">
 
           <div className="flex items-center justify-center gap-1.5">
             <Calendar className="h-3.5 w-3.5" />

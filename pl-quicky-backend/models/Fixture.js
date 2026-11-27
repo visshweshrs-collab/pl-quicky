@@ -85,6 +85,8 @@ const fixtureSchema = new mongoose.Schema({
       teamName: { type: String, default: "" },
       playerId: { type: Number, default: null },
       playerName: { type: String, required: true },
+      // Display name from the players endpoint (e.g. "Bukayo Saka"); falls back to playerName
+      knownName: { type: String, default: "" },
       eventType: { type: String, default: "goal" },
       detail: { type: String, default: "" },
       isOwnGoal: { type: Boolean, default: false }

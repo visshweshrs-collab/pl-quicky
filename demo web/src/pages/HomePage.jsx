@@ -387,6 +387,15 @@ export default function HomePage({
                   ? fixture?.awayScore
                   : null,
 
+
+              // Goal scorers stored by the backend (FootballData events).
+              // Must be forwarded or MatchCard has nothing to render.
+              goalEvents:
+                (completed || isLive) &&
+                Array.isArray(fixture?.goalEvents)
+                  ? fixture.goalEvents
+                  : [],
+
             };
 
           })

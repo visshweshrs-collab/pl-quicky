@@ -14,6 +14,7 @@ import {
 import MatchStatsComparison from '../components/match/MatchStatsComparison';
 import MatchTimeline from '../components/match/MatchTimeline';
 import MatchLineup from '../components/match/MatchLineup';
+import GoalScorers from '../components/match/GoalScorers';
 
 import { getTeamByApiId } from '../data/teams';
 import { API_BASE_URL } from '../config/api';
@@ -359,13 +360,13 @@ export default function MatchDetailsPage() {
 
         {/* SCOREBOARD */}
 
-        <div className="my-8 grid grid-cols-7 items-center gap-4 text-center">
+        <div className="my-8 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 sm:gap-4 text-center">
 
           {/* HOME TEAM */}
 
           <Link
             to={`/teams/${homeTeam.id}`}
-            className="col-span-3 flex flex-col items-center group transition-transform hover:scale-105"
+            className="flex min-w-0 flex-col items-center group transition-transform hover:scale-105"
           >
 
             <div className="relative mb-3 flex h-20 w-20 sm:h-28 sm:w-28 items-center justify-center rounded-3xl bg-[#16051D] p-4 shadow-xl border border-pl-border/80">
@@ -399,7 +400,7 @@ export default function MatchDetailsPage() {
 
           {/* SCORE */}
 
-          <div className="col-span-1 flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center">
 
             {isCompleted || isLive ? (
 
@@ -463,7 +464,7 @@ export default function MatchDetailsPage() {
 
           <Link
             to={`/teams/${awayTeam.id}`}
-            className="col-span-3 flex flex-col items-center group transition-transform hover:scale-105"
+            className="flex min-w-0 flex-col items-center group transition-transform hover:scale-105"
           >
 
             <div className="relative mb-3 flex h-20 w-20 sm:h-28 sm:w-28 items-center justify-center rounded-3xl bg-[#16051D] p-4 shadow-xl border border-pl-border/80">
@@ -498,10 +499,25 @@ export default function MatchDetailsPage() {
         </div>
 
         {/* =================================================
+            GOAL SCORERS
+        ================================================= */}
+
+        {(isCompleted || isLive) && (
+          <GoalScorers
+            events={timeline}
+            homeScore={match.homeScore}
+            awayScore={match.awayScore}
+            completed={isCompleted}
+            large
+            className="mb-6 -mt-2 border-t border-pl-border/60 pt-5"
+          />
+        )}
+
+        {/* =================================================
             MATCH METADATA
         ================================================= */}
 
-        <div className="flex flex-wrap items-center justify-center gap-6 border-t border-pl-border/60 pt-4 text-xs text-pl-lavender">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-pl-border/60 pt-4 text-xs text-pl-lavender">
 
           {/* DATE */}
 
@@ -515,7 +531,7 @@ export default function MatchDetailsPage() {
 
           </span>
 
-          <span>•</span>
+          <span className="hidden sm:inline">•</span>
 
           {/* KICKOFF */}
 
@@ -529,7 +545,7 @@ export default function MatchDetailsPage() {
 
           </span>
 
-          <span>•</span>
+          <span className="hidden sm:inline">•</span>
 
           {/* VENUE */}
 
@@ -547,7 +563,7 @@ export default function MatchDetailsPage() {
 
           {match.referee && (
             <>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
 
               <span className="text-pl-muted">
                 Referee:{' '}
@@ -570,27 +586,30 @@ export default function MatchDetailsPage() {
 
       <div className="flex items-center justify-center">
 
-        <div className="flex flex-wrap items-center justify-center rounded-2xl bg-pl-card p-1.5 border border-pl-border shadow-inner">
+        <div className="flex w-full sm:w-auto items-center justify-center rounded-2xl bg-pl-card p-1.5 border border-pl-border shadow-inner">
 
           {/* STATS */}
 
           <button
             onClick={() => setActiveTab('stats')}
-            className={`flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
+            className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-6 py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
               activeTab === 'stats'
                 ? 'bg-pl-purple text-white shadow-glow-pink/30 border border-pl-pink'
                 : 'text-pl-muted hover:text-white'
             }`}
           >
             <Activity className="h-4 w-4" />
-            <span>Match Statistics</span>
+            <span>
+              <span className="sm:hidden">Stats</span>
+              <span className="hidden sm:inline">Match Statistics</span>
+            </span>
           </button>
 
           {/* TIMELINE */}
 
           <button
             onClick={() => setActiveTab('timeline')}
-            className={`flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
+            className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-6 py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
               activeTab === 'timeline'
                 ? 'bg-pl-purple text-white shadow-glow-pink/30 border border-pl-pink'
                 : 'text-pl-muted hover:text-white'
@@ -604,7 +623,7 @@ export default function MatchDetailsPage() {
 
           <button
             onClick={() => setActiveTab('lineups')}
-            className={`flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
+            className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-6 py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
               activeTab === 'lineups'
                 ? 'bg-pl-purple text-white shadow-glow-pink/30 border border-pl-pink'
                 : 'text-pl-muted hover:text-white'

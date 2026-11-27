@@ -431,6 +431,17 @@ export default function FixturesPage() {
                   awayScore,
 
                   // ---------------------------------------
+                  // GOAL SCORERS
+                  // (stored by the backend from FootballData events;
+                  //  must be forwarded so MatchCard can render them)
+                  // ---------------------------------------
+
+                  goalEvents:
+                    Array.isArray(match.goalEvents)
+                      ? match.goalEvents
+                      : [],
+
+                  // ---------------------------------------
                   // LIVE MINUTE
                   // ---------------------------------------
 
